@@ -1,0 +1,76 @@
+
+.navbar {
+  background-color: #333; /* Dark background for navbar */
+  overflow: hidden; /* Ensures the navbar does not overflow */
+  font-family: Arial, sans-serif; /* Stylish, readable font */
+  display: flex; /* Use flexbox for distributing space */
+  justify-content: space-between; /* Aligns items on the main axis */
+  align-items: center; /* Aligns items on the cross axis */
+  margin-top: 0;
+}
+
+.navbar a {
+  display: block; /* Changes links from inline to block elements */
+  color: #f2f2f2; /* Light grey color for links */
+  text-align: center; /* Center text */
+  padding: 14px 20px; /* Spacing inside link elements */
+  text-decoration: none; /* Removes underline from links */
+  font-size: 17px; /* Size of the link text */
+}
+
+
+.navbar a:hover {
+  background-color: #ddd; /* Light grey background for hovered links */
+  color: black; /* Changes text color for hovered links */
+}
+
+.navbar a.active {
+  background-color: #4CAF50; /* Highlight color for the active page */
+  color: white; /* Text color for the active link */
+}
+
+.logo-container {
+  display: flex;
+  padding: 10px; /* Add padding if needed */
+}
+
+.navbar ul {
+  list-style-type: none; /* Removes bullets from the list */
+  display: flex; /* Use flexbox for inline behavior */
+  padding: 0;
+  margin: 0;
+}
+
+.nav-icon {
+  width: 20px;  /* Example size */
+  height: 20px; /* Example size, you can set it to 'auto' to maintain aspect ratio */
+  margin-right: 8px; /* Space between the icon and text */
+  vertical-align: middle; /* Aligns the icon vertically with the text */
+  /* Other styles you want to apply to all icons */
+}
+
+.app-logo {
+  /* Style for the logo image */
+  height: auto; /* Maintain aspect ratio */
+  width: 120px; /* Example width, adjust as needed */
+}
+
+/* Responsive layout - makes the navbar links stack instead of float */
+@media screen and (max-width: 600px) {
+  .navbar {
+    flex-direction: column; /* Stack the items vertically on small screens */
+  }
+
+  .navbar ul {
+    width: 100%; /* Full width */
+    flex-direction: column; /* Stack the items vertically */
+  }
+
+  .navbar a, .navbar li {
+    text-align: left; /* Aligns the text to the left */
+  }
+
+  .logo-container {
+    order: -1; /* Puts the logo at the top on small screens */
+  }
+}
