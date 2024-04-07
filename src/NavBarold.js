@@ -32,6 +32,9 @@ const NavigationBar = () => {
     employee: [
       { name: "Home", path: "./Homepage", icon: house_icon},
       { name: "News Feed", path: "/PostsPage" },
+      { name: "Manage Accounts", path: "/ManageAccount" },
+      { name: "Teams", path: "/ManageTeam" },
+      { name: "Clients", path: "/ManageClient" },
     ],
     manager: [
       { name: "Dashboard", path: "/dashboard" },
@@ -41,18 +44,15 @@ const NavigationBar = () => {
       { name: "Clients", path: "/consultations" },
     ],
     admin: [
-      { name: "Home", path: "./Homepage", icon: house_icon},
       { name: "Manage Accounts", path: "/manageAccount" },
       { name: "Teams", path: "/manageTeam" },
       { name: "Clients", path: "/manageClient" },
     ]
   };
 
-  const userLinks = userType === 'admin' 
-  ? navLinks[userType] // Admin gets only admin links
-  : userType === 'manager' || userType === 'consultant'
-  ? [...navLinks.employee, ...navLinks[userType]] // Managers and consultants get employee links plus specific ones
-  : navLinks.employee; // Employees get only employee links
+  const userLinks = userType === 'manager' || userType === 'consultant'
+    ? [...navLinks.employee, ...navLinks[userType]]
+    : navLinks.employee;
 
   return (
     <nav className="navbar">
