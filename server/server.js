@@ -29,6 +29,7 @@ const createClient =require('./createClient');
 const updateClient =require('./updateClient');
 const deleteClient = require('./deleteClient');
 const getClient = require('./getClient');
+const getClientInfo = require('./getClientInfo');
 
 
 
@@ -68,8 +69,7 @@ app.post('/api/clients/add',createClient);
 app.post('/api/clients/update',updateClient);
 app.get('/api/clients/view',getClient);
 app.delete('/api/clients/delete',deleteClient);
-
-
+app.get('/api/client/getInfo',getClientInfo);
 
 
 
