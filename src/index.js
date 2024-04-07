@@ -12,6 +12,7 @@ import reportWebVitals from './reportWebVitals';
 import ManageAccount from './Admin/manageAccountsForm';
 import ManageClient from './Admin/manageClientForm';
 import ManageTeam from './Admin/manageTeamForm';
+import GetClient from './Consultant/ViewClientInfo';
 
 const Main = () => {
   return (
@@ -25,6 +26,7 @@ const Main = () => {
         <Route path="/ManageAccount" element={<PrivateRoute><ManageAccount /></PrivateRoute>} />
         <Route path="/ManageClient" element={<PrivateRoute><ManageClient /></PrivateRoute>} />
         <Route path="/ManageTeam" element={<PrivateRoute><ManageTeam /></PrivateRoute>} />
+        <Route path="/consultations" element={<PrivateRoute><GetClient /></PrivateRoute>} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </>
