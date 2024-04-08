@@ -27,7 +27,7 @@ const addTeamPost = (req, res, next) => {
         data = path.join('uploads', req.file.filename);
     }
 
-    const sql = 'INSERT INTO TeamBlog (text, title, teamId, name, postDate) VALUES (?, ?, ?, ?, ?)';
+    const sql = 'INSERT INTO teamBlog (text, title, teamId, name, postDate) VALUES (?, ?, ?, ?, ?)';
     const params = [text, title, teamId, name, postDate];
     
     db.run(sql, params, function(err) {
