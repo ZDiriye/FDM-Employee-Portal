@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import CreateClientForm from './createClientForm'; // Import the CreateClientForm component
 import NavigationBar from '../NavBar';
+import "./Admin.css";
 function ViewClients() {
     const [clients, setClients] = useState([]);
     const [selectedClient, setSelectedClient] = useState(null); // State to track the selected client

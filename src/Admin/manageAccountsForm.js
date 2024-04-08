@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import ViewAccountForm from './viewAccountForm';
 import CreateAccountForm from './createAccountForm';
 import NavigationBar from '../NavBar';
+import "./Admin.css";
 function ManageAccountsForm() {
   const [selectedOption, setSelectedOption] = useState(null);
 

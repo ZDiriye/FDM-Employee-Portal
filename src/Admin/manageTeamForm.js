@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import CreateTeamForm from './createTeamForm'; // Import the CreateTeamForm component
 import NavigationBar from '../NavBar';
+import "./Admin.css";
 function ViewTeams() {
     const [teams, setTeams] = useState([]);
     const [selectedTeam, setSelectedTeam] = useState(null); // State to track the selected team

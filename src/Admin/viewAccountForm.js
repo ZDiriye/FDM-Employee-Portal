@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-
+import "./Admin.css";
 export default function ViewAccountForm() {
     const [accounts, setAccounts] = useState([]);
     const [clients, setClients] = useState([]);
