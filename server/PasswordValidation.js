@@ -23,7 +23,7 @@ function PasswordValidation(req, res){
                     // User found, create a token with both userID and username.
                     console.log("this is type: ", userRow  )
                     const token = jwt.sign(
-                        { userID: username, Name: userRow.firstName, Surname:userRow.lastName, Type: accountRow[0].type },
+                        { userID: username, Name: userRow.firstName, Surname:userRow.lastName, Type: accountRow[0].type, TeamID: accountRow[0].teamId },
                         SECRET_KEY,
                         { expiresIn: '1h' } // Token expires in 1 hour
                     );
