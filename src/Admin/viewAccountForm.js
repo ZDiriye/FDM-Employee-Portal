@@ -80,8 +80,26 @@ export default function ViewAccountForm() {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setSelectedAccount({ ...selectedAccount, [name]: value });
+    
+        if (name === "teamId" && value === "") {
+            setSelectedAccount({ ...selectedAccount, teamId: null });
+        }
+        else if (name === "clientId" && value === "") {
+            setSelectedAccount({ ...selectedAccount, clientId: null });
+        }
+        else {
+            setSelectedAccount({ ...selectedAccount, [name]: value });
+        }
+    
+        if (name === "teamId" && value === "" && selectedAccount.clientId === "") {
+            setSelectedAccount({ ...selectedAccount, teamId: null, clientId: null });
+        } else if (name === "clientId" && value === "" && selectedAccount.teamId === "") {
+            setSelectedAccount({ ...selectedAccount, teamId: null, clientId: null });
+        }
     };
+    
+    
+    
 
     return (
         <div>
@@ -176,7 +194,9 @@ export default function ViewAccountForm() {
                                         {team.teamId}
                                     </option>
                                 ))}
+                                <option value={null}>Unassign Team</option> 
                             </select>
+
                         </label>
                         <label>
                             Client ID:
@@ -187,6 +207,7 @@ export default function ViewAccountForm() {
                                         {client.clientId}
                                     </option>
                                 ))}
+                                <option value={null}>Unassign Client</option> 
                             </select>
                         </label>
 
