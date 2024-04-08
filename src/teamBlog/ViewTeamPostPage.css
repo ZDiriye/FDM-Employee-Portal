@@ -1,0 +1,157 @@
+/* Blog.css */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+.blog {
+    max-width: 800px;
+    margin: 40px ;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    grid-area: blog-content;
+  }
+
+  .Container {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr; /* 3 columns of equal width */
+    grid-template-rows: auto auto; /* 2 rows; height will adjust to content */
+    grid-gap: 20px; /* Space between grid items */
+    grid-template-areas:
+      ". blog-content ." /* blog-content occupies the second column */
+      ". buttons ."; /* button spans all three columns */
+    margin-bottom: 20px; /* Give some space from the bottom of the container */
+  }
+  
+  .blog h1 {
+    text-align: center;
+    color: #333;
+  }
+  
+  .message {
+    text-align: center;
+    color: red;
+    margin: 20px 0;
+  }
+
+  .post-container {
+    display: grid;
+    grid-template-columns: auto 1fr; /* space for checkbox and then the rest for content */
+    grid-template-rows: auto auto auto; /* three rows */
+    grid-template-areas: 
+      "checkbox title"
+      "checkbox content"
+      "checkbox author-date"; /* place checkbox at the start of each row */
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+    align-items: center; /* Align items vertically */
+  }
+  
+  /* Style for checkboxes */
+  .post-container input[type="checkbox"] {
+    grid-area: checkbox; /* Assign the checkbox to the checkbox area */
+    margin-right: 10px; /* Add some space between checkbox and the post content */
+    transform: scale(1.5); /* Scale down the checkbox to make it smaller */
+  }
+  
+  
+  .post-title {
+    grid-area: title;
+  }
+  
+  .post-content {
+    grid-area: content;
+    font-size: 1em;
+    line-height: 1.6;
+    color: #333;
+  }
+  
+  .author-date {
+    display: flex;
+    grid-area: author-date;
+    flex-direction: column; /* Stack them vertically */
+    align-items: flex-end; /* Align to the end of the 'author-date' area */
+    justify-content: center; /* Center them vertically if there's extra space */
+}
+/*
+  .post-author,
+  .post-date {
+    grid-area: author-date;
+    bottom: 0;
+    right: 0;
+    font-size: 0.9em;
+    text-align: right;
+  }
+*/
+  .post-author {
+    margin: 0;
+    color: #c62626;
+    font-size: 0.9em;
+  }
+  
+  .post-date {
+    margin: 5px 0;
+    color: #a2a2a2;
+    font-size: 0.9em;
+  }
+  
+  /* Optional: If you have images */
+  .post-image {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 10px auto;
+  }
+  
+  .Blog-buttons {
+    grid-area: buttons;
+    display: flex; /* Use flexbox for alignment */
+    gap: 10px; /* Add some space between the buttons */
+    padding: 20px; /* Add some padding around the buttons */
+}
+
+/* Now, uncomment your button styles and adjust as needed */
+.create-post-button {
+    background-color: #2c3e50; 
+    color: white;
+    border: none;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    padding: 8px 16px;
+    font-size: 0.875rem;
+    margin-left: 65%;
+}
+
+.delete-action-button {
+  background-color: #e74c3c; /* A red color indicating a delete action */
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 0.875rem;
+  margin-left: 0;
+}
+
+.delete-action-button:hover {
+  background-color: #c0392b; /* Darker shade of red for hover */
+}
+
+  
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .blog {
+      margin: 20px;
+    }
+  }
+  
