@@ -2,9 +2,20 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import NavigationBar from '../NavBar';
+import useToken from '../useToken';
+import { jwtDecode } from 'jwt-decode';
 function ViewClientInfo() {
     const [accountId, setAccountId] = useState(10);
     const [client, setClient] = useState(null);
+    const {token}=useToken();
+
+    let userId ='';
+
+    if (token){
+        const decodedToken = jwtDecode(token);
+        console.log(decodedToken);
+        userId = decodedToken.userID
+    }
 
     useEffect(() => {
         getClientInfo();
@@ -12,8 +23,8 @@ function ViewClientInfo() {
 
     const getClientInfo = async () => {
         try {
-            console.log("Fetching client info for accountId:", accountId);
-            const response = await axios.get('http://localhost:3001/api/client/getInfo', { params: { accountId } });
+            console.log("Fetching client info for accountId:", userId);
+            const response = await axios.get('http://localhost:3001/api/client/getInfo', { params: { userId } });
             console.log("Response:", response.data);
             setClient(response.data);
         } catch (error) {
