@@ -80,27 +80,10 @@ export default function ViewAccountForm() {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-    
-        if (name === "teamId" && value === "") {
-            setSelectedAccount({ ...selectedAccount, teamId: null });
-        }
-        else if (name === "clientId" && value === "") {
-            setSelectedAccount({ ...selectedAccount, clientId: null });
-        }
-        else {
-            setSelectedAccount({ ...selectedAccount, [name]: value });
-        }
-    
-        if (name === "teamId" && value === "" && selectedAccount.clientId === "") {
-            setSelectedAccount({ ...selectedAccount, teamId: null, clientId: null });
-        } else if (name === "clientId" && value === "" && selectedAccount.teamId === "") {
-            setSelectedAccount({ ...selectedAccount, teamId: null, clientId: null });
-        }
+        setSelectedAccount({ ...selectedAccount, [name]: value });
+        
     };
     
-    
-    
-
     return (
         <div>
             <h1>All Accounts</h1>
