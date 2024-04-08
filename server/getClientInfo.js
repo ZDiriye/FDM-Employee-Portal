@@ -1,7 +1,7 @@
 const db = require('./dbPath');
 
 function getClientInfo(req, res) {
-    const userId = req.query.accountId;
+    const userId = req.query.userId;
 
     console.log("function running for account ", userId);
 
