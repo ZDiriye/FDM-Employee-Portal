@@ -5,7 +5,7 @@ import NavigationBar from '../NavBar';
 import useToken from '../useToken';
 import { jwtDecode } from 'jwt-decode';
 function ViewClientInfo() {
-    const [accountId, setAccountId] = useState(10);
+  
     const [client, setClient] = useState(null);
     const {token}=useToken();
 
