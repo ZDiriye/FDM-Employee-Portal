@@ -32,6 +32,7 @@ const NavigationBar = () => {
     employee: [
       { name: "Home", path: "./Homepage", icon: house_icon},
       { name: "News Feed", path: "/PostsPage" },
+      { name:"Team news feed", path:"/TeamPostsPage"}
     ],
     manager: [
       { name: "Dashboard", path: "/dashboard" },
@@ -81,50 +82,3 @@ const NavigationBar = () => {
 };
 
 export default NavigationBar;
-
-
-
-
-
-
-
-
-/*
-import React, {useState} from 'react';
-import { useNavigate } from 'react-router-dom';
-import './NavBar.css'; // Import the corresponding stylesheet
-
-const NavigationBar = () => {
-  const navigate = useNavigate();
-  const [token, setToken] = useState(null);
-  
-  const handleLogout = () => {
-    // Clear the token from session storage
-    sessionStorage.removeItem('token');
-    
-    // Update the token state
-    setToken(null);
-    navigate('/Login_folder/Login'); // Navigate to the login page
-  };
-//--------------------------
-  const handleLogoutClick = () => {
-    if (onLogout) {
-      onLogout(); // Execute the logout handler passed via props
-    }
-    
-  };
-//-------------------------------
-  return (
-    <nav className="navigation-bar">
-      <button className="nav-button">Homepage</button>
-      <button className="nav-button">Calendar</button>
-      <button className="nav-button">Personal Information</button>
-      <button className="nav-button" onClick={handleLogout}>
-        Logout
-      </button>
-    </nav>
-  );
-};
-
-export default NavigationBar;
-*/
