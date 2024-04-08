@@ -48,6 +48,7 @@ function ViewTeams() {
             await axios.post('http://localhost:3001/api/teams/update', selectedTeam);
             // Logic for handling successful edit
             window.alert('update successful');
+            getTeams();
         } catch (error) {
             console.error('Error editing team:', error.message);
             // Logic for handling error
@@ -71,6 +72,8 @@ function ViewTeams() {
         try {
             await axios.delete('http://localhost:3001/api/teams/delete', { data: selectedTeam });
             // Logic for handling successful deletion
+            setSelectedTeam();
+            getTeams();
         } catch (error) {
             console.error('Error deleting team:', error.message);
             // Logic for handling error
@@ -103,7 +106,7 @@ function ViewTeams() {
             </table>
 
             {/* Conditional rendering of the create team form */}
-            {showCreateForm && <CreateTeamForm />}
+            {showCreateForm && <CreateTeamForm getTeams ={getTeams}/>}
             {/* Button for creating a new team */}
             {!showCreateForm && (
                 <button onClick={handleCreateTeam}>

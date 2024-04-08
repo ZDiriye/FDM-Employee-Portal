@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'; // Import Axios library
 
-function CreateTeamForm() {
+function CreateTeamForm(props) {
     const [teamName, setTeamName] = useState('');
     const [managerId, setManagerId] = useState('');
     const [managers, setManagers] = useState([]);
@@ -28,16 +28,18 @@ function CreateTeamForm() {
                 managerId,
                 teamName
             });
-
+    
             console.log('Team created successfully:', response.data);
             setTeamName('');
             setManagerId('');
             window.alert("Team created");
             fetchManagers();
+            props.getTeams();
         } catch (error) {
             console.error('Error creating team:', error.message);
         }
     };
+    
 
     return (
         <div>

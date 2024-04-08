@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-function CreateClientForm() {
+function CreateClientForm(props) {
     const [clientName, setClientName] = useState('');
     const [clientEmail, setClientEmail] = useState('');
 
@@ -20,6 +20,7 @@ function CreateClientForm() {
             // Reset form fields after successful submission
             setClientName('');
             setClientEmail('');
+            props.getClients();
             window.alert("Client created");
         } catch (error) {
             console.error('Error creating client:', error.message);

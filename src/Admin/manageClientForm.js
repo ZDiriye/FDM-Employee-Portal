@@ -44,6 +44,7 @@ function ViewClients() {
             await axios.delete('http://localhost:3001/api/clients/delete', { data: { clientId: selectedClient.clientId } });
             alert('Client deleted successfully');
             // Fetch updated list of clients
+            setSelectedClient();
             getClients();
         } catch (error) {
             console.error('Error deleting client:', error.message);
@@ -74,7 +75,7 @@ function ViewClients() {
             </table>
 
             {/* Conditional rendering of the create client form */}
-            {showCreateForm && <CreateClientForm />}
+            {showCreateForm && <CreateClientForm getClients={getClients}/>}
             {/* Button for creating a new client */}
             {!showCreateForm && (
                 <button onClick={handleCreateClient}>
