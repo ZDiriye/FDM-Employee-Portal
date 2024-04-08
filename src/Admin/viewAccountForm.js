@@ -159,7 +159,7 @@ export default function ViewAccountForm() {
                         </label>
                         <label>
                             Account Type:
-                            <select name="accountType" value={selectedAccount.type} onChange={handleChange}>
+                            <select name="type" value={selectedAccount.type} onChange={handleChange}>
                                 <option value="employee">Employee</option>
                                 <option value="manager">Manager</option>
                                 <option value="admin">Admin</option>
