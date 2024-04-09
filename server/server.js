@@ -33,7 +33,7 @@ const updateClient =require('./updateClient');
 const deleteClient = require('./deleteClient');
 const getClient = require('./getClient');
 const getClientInfo = require('./getClientInfo');
-
+const getEmployees = require('./getEmployees')
 
 
 const app = express()
@@ -46,7 +46,7 @@ app.use(express.json({limit : '10mb'}))
 app.use(bodyParser.json());
 
 
-// assinging each imported function to a path for the fronend code
+// assinging each imported function to a path for the frontend code
 app.post('/validatePassword', PasswordValidation);
 app.post("/recoveryEmail", EmailCode);
 app.post("/securityCode", CheckCode);
@@ -76,7 +76,7 @@ app.post('/api/clients/update',updateClient);
 app.get('/api/clients/view',getClient);
 app.delete('/api/clients/delete',deleteClient);
 app.get('/api/client/getInfo',getClientInfo);
-
+app.get('/getEmployees',getEmployees);
 
 
 
