@@ -4,6 +4,7 @@ import axios from "axios";
 import NavigationBar from '../NavBar';
 import useToken from '../useToken';
 import { jwtDecode } from 'jwt-decode';
+import "./Consultant.css";
 function ViewClientInfo() {
   
     const [client, setClient] = useState(null);
@@ -42,10 +43,19 @@ function ViewClientInfo() {
             <div className="ViewClient">
                 <h1>Client Information</h1>
                 {client !== null ? (
-                    <div>
-                        <p>Client Id: {client[0]?.clientId || 'N/A'}</p>
-                        <p>Client Name: {client[0]?.clientName || 'N/A'}</p>
-                        <p>Line Manager Email: {client[0]?.clientEmail || 'N/A'}</p>
+                    <div className={"data-container"}>
+                        <h2>Client Id: </h2>
+                        <br/>
+                        <p className={"info"}>{client[0]?.clientId || 'N/A'}</p>
+                        <br/>
+                        <h2>Client Name: </h2>
+                        <br/>
+                        <p className={"info"}>{client[0]?.clientName || 'N/A'}</p>
+                        <br/>
+                        <h2>Line Manager Email:</h2>
+                        <br/>
+                        <p className={"info"}>{client[0]?.clientEmail || 'N/A'}</p>
+                        <a className={"email-link"} href={"mailto:"+client[0]?.clientEmail || 'N/A'}>Send Email</a>
                     </div>
                 ) : (
                     <p>No client information available.</p>

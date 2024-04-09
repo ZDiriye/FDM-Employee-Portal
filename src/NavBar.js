@@ -45,7 +45,7 @@ const NavigationBar = () => {
       { name: "Manage Users", path: "/manage-users", icon: manage_account_icon },
     ],
     consultant: [
-      { name: "Clients", path: "/consultations", icon: client_info_icon},
+      { name: "Client Details", path: "/consultations", icon: client_info_icon},
     ],
     admin: [
       { name: "Home", path: "./Homepage", icon: house_icon},
