@@ -40,10 +40,17 @@ function ViewClients() {
         }
     };
 
+    function confirmDelete() {
+        if (window.confirm("Are you sure you want to delete this client?")) {
+            handleDeleteClient();
+            alert("Client deleted");
+            console.log('client deleted');
+        }
+    }
+
     const handleDeleteClient = async () => {
         try {
             await axios.delete('http://localhost:3001/api/clients/delete', { data: { clientId: selectedClient.clientId } });
-            alert('Client deleted successfully');
             // Fetch updated list of clients
             setSelectedClient();
             getClients();
@@ -120,7 +127,7 @@ function ViewClients() {
                         <br/>
                         <div className={"form-button-box"}>
                             <button className={"form-button"} type="button" onClick={handleEditClient}>Save Changes</button>
-                            <button className={"form-delete-button"} type="button" onClick={handleDeleteClient}>Delete Client</button>
+                            <button className={"form-delete-button"} type="button" onClick={confirmDelete}>Delete Client</button>
                         </div>
                     </form>
                     <br/>
