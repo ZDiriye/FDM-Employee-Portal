@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import './Login.css';
 import axios from 'axios';
 import useToken from '../useToken';
+import fdm_Logo from "../images/fdm-logo.png";
 
 
 async function LoginUser(credentials) {
@@ -17,10 +18,6 @@ async function LoginUser(credentials) {
     }).then(data => data.json())
 }
 
-const emailButton = (e) => {
-    e.preventDefault();
-    
-  };
 
 const Login = () => {
 
@@ -28,8 +25,10 @@ const Login = () => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [otp, setOtp] = useState(new Array(6).fill(''));
-    const [step, setStep] = useState(1); // step 1 for login, step 2 for otp
+    const [step, setStep] = useState(1); 
     const [errorMessage, setErrorMessage] = useState('');
+    const [canResend, setCanResend] = useState(true);
+    const [countdown, setCountdown] = useState(30);
     const { setToken } = useToken();
 
     const handleChange = (element, index) => {
@@ -39,6 +38,59 @@ const Login = () => {
             element.nextSibling.focus();
         }
     };
+
+    const goBackToLogin = () => {
+        setStep(1);
+        setErrorMessage('');
+        setOtp(new Array(6).fill(''));
+    };
+
+    const verifyOTP = async () => {
+        const securityCode = otp.join('');
+        try {
+            const response = await axios.post('http://localhost:3001/securityCode', { username, securityCode });
+            if (response.data.validation === true) {
+                navigate('/homepage');
+            } else {
+                setErrorMessage("The OTP entered is incorrect.");
+            }
+        } catch (error) {
+            setErrorMessage("An error occurred while verifying the OTP.");
+        }
+    };
+
+    const resendOTP = async () => {
+        try {
+          const response = await axios.post('http://localhost:3001/recoveryEmail', { username });
+          console.log(response);
+          setCanResend(false);
+          startCountdown();
+        } catch (error) {
+          console.error('Error resending email:', error);
+          alert(error.response ? error.response.data.message : error.message);
+        }
+      };
+    
+
+      const startCountdown = () => {
+        if (!canResend) return;
+    
+        let timeLeft = 30;
+        const timerId = setInterval(() => {
+          timeLeft -= 1;
+          setCountdown(timeLeft);
+          if (timeLeft <= 0) {
+            clearInterval(timerId);
+            setCanResend(true);
+          }
+        }, 1000);
+      };
+
+    function handlePasswordResetClick() {
+            navigate('/Login_folder/passwordResetCode');
+    };
+
+
     
 
     const onFinish = async (e) => {
@@ -50,43 +102,31 @@ const Login = () => {
             setToken({token : tokenResponse});
             axios.post('http://localhost:3001/recoveryEmail', { username })
             .then(response => {
-                //setStep(2);
+                setStep(2);
+                setCanResend(true);
+                
             })
             .catch(error => {
                 console.error('Error sending email:', error);
                 alert(error.response ? error.response.data.message : error.message);
             });
-            //navigate('/homepage');
-            setStep(2);
           } else {
-            // Handle the error case here
             alert('Login failed');
           }
         }
         
-    const verifyOTP = async () => {
-        const securityCode = otp.join('');
-        try {
-            const response = await axios.post('http://localhost:3001/securityCode', { username, securityCode });
-            if (response.data.validation === true) {
-                //setToken({ token: response.data.token });
-                navigate('/homepage');
-            } else {
-                setErrorMessage("The OTP entered is incorrect.");
-            }
-        } catch (error) {
-            setErrorMessage("An error occurred while verifying the OTP.");
-        }
-    };
-
-    function handlePasswordResetClick() {
-            navigate('/Login_folder/passwordResetCode'); // Use the path you defined in your <Route>
-    }
+    
 
     return (
+        <>
+        <nav className="simple-nav">
+            <img src={fdm_Logo} alt="App Logo" className="app-logo" />
+        </nav>
         <div className="login-container">
+
             {step === 1 && (
                 <>
+
                     <h1 className="login-title">Login</h1>
                     <form onSubmit={onFinish} className="login-form">
                     <div className="form-group">
@@ -110,10 +150,9 @@ const Login = () => {
                     /> 
                 </div>
                         <button type="submit" className="submit-button">Submit</button>
+                        <button onClick={handlePasswordResetClick} className="forgot-password-button">Forgot password</button>
                         {errorMessage && <div className="error-message">{errorMessage}</div>}
                     </form>
-                    {/*<button onClick={() => setStep(2)} className="forgot-password-button">Forgot password</button>*/}
-                    <button onClick={handlePasswordResetClick} className="forgot-password-button">Forgot password</button>
                 </>
             )}
             {step === 2 && (
@@ -134,17 +173,28 @@ const Login = () => {
                             value={data}
                             onChange={e => handleChange(e.target, index)}
                             onFocus={e => e.target.select()}
-                            autoComplete="off" // Disable autocomplete suggestions
+                            autoComplete="off"
                         />
                         ))}
                     </div>
                     <button type="submit" className="verify-btn">Verify</button>
+                    
                     </form>
                     {errorMessage && <p className="error">{errorMessage}</p>}
+
+                    <div className="button-container">
+                        <button onClick={resendOTP} className="resend-otp-button" disabled={!canResend}> 
+                            Resend OTP {canResend ? '' : `(${countdown})`} 
+                        </button>
+                        <button onClick={goBackToLogin} className="back-button">Back</button>
+                    </div>
+
                 </>
                 )}
         </div>
+        </>
     );
+    
 }
 
 
