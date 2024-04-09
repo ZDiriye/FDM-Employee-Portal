@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { jwtDecode } from 'jwt-decode';
 import useToken from '../useToken';
 import "./PasswordResetCode.css";
+import fdm_Logo from "../images/fdm-logo.png";
 
 const PasswordReset = () => {
   const navigate = useNavigate();
@@ -13,6 +14,8 @@ const PasswordReset = () => {
   const [code, setCode] = useState(Array(6).fill(''));
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [canResend, setCanResend] = useState(true); // State to control the resend button availability
+  const [countdown, setCountdown] = useState(30);
   const { token } = useToken(); // Use the token from your custom hook
 
   const inputRefs = Array.from({ length: 6 }, () => React.createRef());
@@ -54,6 +57,38 @@ const PasswordReset = () => {
     return hasNumber && hasUpperCase;
   };
 
+  const goBackToLogin = () => {
+    navigate('/Login_folder/Login'); // Adjust the route as needed for your routing setup
+  };
+  const resendOTP = async () => {
+    try {
+      const response = await axios.post('http://localhost:3001/recoveryEmail', { username });
+      console.log(response); // You might want to handle the response or show a message
+      setCanResend(false);
+      startCountdown();
+    } catch (error) {
+      console.error('Error resending email:', error);
+      alert(error.response ? error.response.data.message : error.message);
+    }
+  };
+
+  // Start the countdown timer
+  const startCountdown = () => {
+    if (!canResend) return; // Prevent multiple timers if already counting down
+
+    let timeLeft = 30;
+    const timerId = setInterval(() => {
+      timeLeft -= 1;
+      setCountdown(timeLeft);
+      if (timeLeft <= 0) {
+        clearInterval(timerId);
+        setCanResend(true);
+      }
+    }, 1000);
+  };
+
+
+  
 
   const handleSubmit = async  (e) => {
     e.preventDefault();
@@ -96,14 +131,19 @@ const PasswordReset = () => {
       setErrorMessage(error.response ? error.response.data.message : 'An error occurred');
     }
   };
+  
+
 
 
   return (
     <div className="reset-container">
+      <nav className="simple-nav">
+            <img src={fdm_Logo} alt="App Logo" className="app-logo" />
+        </nav>
       {step === 1 && (
         <>
-          <h3 className="reset-title">Please enter your username, and if we find a match in the system, an email will be sent with a security code.</h3>
           <form onSubmit={emailButton} className="reset-form">
+          <h3 className="reset-instructions">Enter your username to receive a password reset link. Make sure it's the one associated with your account.</h3>
             <input 
               type='text' 
               required 
@@ -114,14 +154,17 @@ const PasswordReset = () => {
             />
             <button type='submit' className="reset-submit-button">Submit</button>
           </form>
+          <button onClick={goBackToLogin} className="back-button">
+            Back to Login
+          </button>
         </>
       )}
       {step === 2 && (
-        <>
-          <h2>Enter Security Code</h2>
-          <form onSubmit={handleSubmit}>
+        <div className="step-container">
+          <h2 className="step-title">Enter Security Code</h2>
+          <p className="step-description">A security code has been sent to your email. Enter the code below to proceed.</p>
+          <form onSubmit={handleSubmit} className="otp-form">
             <div className="otp-inputs">
-              <p>Username: {username}</p>
               {code.map((digit, index) => (
                 <input
                   key={index}
@@ -138,13 +181,19 @@ const PasswordReset = () => {
                 />
               ))}
             </div>
-            {errorMessage && <div className="error-message">{errorMessage}</div>}
-            <br />
-
             <button type="submit" className="verify-btn">Verify Code</button>
+            {errorMessage && <div className="error-message">{errorMessage}</div>}
           </form>
-        </>
+          <div className="button-container">
+                <button onClick={resendOTP} className="resend-otp-button" disabled={!canResend}> 
+                    Resend OTP {canResend ? '' : `(${countdown})`} 
+                </button>
+                <button onClick={goBackToLogin} className="back-button">Back</button>
+            </div>
+                
+          </div>
       )}
+
       {step === 3 && (
         <div className="container">
           <h2 className="title">Reset Your Password</h2>
@@ -174,6 +223,9 @@ const PasswordReset = () => {
               Reset Password
             </button>
           </form>
+          <button onClick={goBackToLogin} className="back-button">
+            Back to Login
+          </button>
         </div>
       )}
     </div>
