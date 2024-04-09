@@ -6,7 +6,7 @@ import fdm_Logo from "./images/fdm-logo.png";
 import house_icon from "./images/house.png";
 import manage_client_icon from "./images/clients.png";
 import news_icon from "./images/newspaper.png";
-import team_icon from "./images/team (1).png";
+import team_icon from "./images/team.png";
 import manage_account_icon from "./images/manageaccount.png";
 import manage_team_icon from "./images/manageteam.png";
 import client_info_icon from "./images/clientinfo.png";
