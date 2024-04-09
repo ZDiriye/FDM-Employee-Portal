@@ -13,7 +13,9 @@ function ManageAccountsForm() {
   return (
     <div>
       <NavigationBar/>
-      <div>
+      <h2>Account Management</h2>
+      <br/>
+      <div className={"button-box"}>
         <button onClick={() => handleOptionChange('create')}>Add Account</button>
         <button onClick={() => handleOptionChange('view')}>Edit/Delete Account</button>
       

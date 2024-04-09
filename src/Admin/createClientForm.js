@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import "./Admin.css";
 
 function CreateClientForm(props) {
     const [clientName, setClientName] = useState('');
@@ -30,6 +31,7 @@ function CreateClientForm(props) {
     return (
         <div>
             <h2>Create New Client</h2>
+            <br/>
             <form onSubmit={handleSubmit}>
                 <div>
                     <label htmlFor="clientName">Client Name:</label>
@@ -43,7 +45,8 @@ function CreateClientForm(props) {
                 </div>
                 <div>
                     <label htmlFor="clientEmail">Client Email:</label>
-                    <input 
+                    <input
+                        className={"client-email"}
                         type="email" 
                         id="clientEmail" 
                         value={clientEmail} 
@@ -51,7 +54,9 @@ function CreateClientForm(props) {
                         required 
                     />
                 </div>
-                <button type="submit">Create Client</button>
+                <div className={"button-box"}>
+                    <button type="submit">Create Client</button>
+                </div>
             </form>
         </div>
     );

@@ -55,7 +55,8 @@ function ViewClients() {
     return (
         <div>
              <NavigationBar />
-            <h1>All Clients</h1>
+            <h1>Select a Client to Edit</h1>
+            <br/>
             <table>
                 <thead>
                     <tr>
@@ -79,14 +80,20 @@ function ViewClients() {
             {showCreateForm && <CreateClientForm getClients={getClients}/>}
             {/* Button for creating a new client */}
             {!showCreateForm && (
-                <button onClick={handleCreateClient}>
-                    Create Client
-                </button>
+            <div>
+                <br/>
+                <div className={"button-box"}>
+                    <button onClick={handleCreateClient}>
+                        Add New Client
+                    </button>
+                </div>
+            </div>
             )}
 
             {selectedClient && (
                 <div>
                     <h2>Edit Client Details</h2>
+                    <br/>
                     <form>
                         <div>
                             <strong>Client ID:</strong> {selectedClient.clientId}
@@ -103,14 +110,18 @@ function ViewClients() {
                         <label>
                             Client Email:
                             <input
+                                className={"client-email"}
                                 type="email"
                                 name="clientEmail"
                                 value={selectedClient.clientEmail}
                                 onChange={(e) => setSelectedClient({ ...selectedClient, clientEmail: e.target.value })}
                             />
                         </label>
-                        <button type="button" onClick={handleEditClient}>Update Client</button>
-                        <button type="button" onClick={handleDeleteClient}>Delete Client</button>
+                        <br/>
+                        <div className={"form-button-box"}>
+                            <button className={"form-button"} type="button" onClick={handleEditClient}>Update Client</button>
+                            <button className={"form-button"} type="button" onClick={handleDeleteClient}>Delete Client</button>
+                        </div>
                     </form>
                 </div>
             )}

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'; // Import Axios library
+import "./Admin.css";
 
 function CreateTeamForm(props) {
     const [teamName, setTeamName] = useState('');
@@ -44,6 +45,7 @@ function CreateTeamForm(props) {
     return (
         <div>
             <h2>Create New Team</h2>
+            <br/>
             <form onSubmit={handleSubmit}>
                 <div>
                     <label htmlFor="teamName">Team Name:</label>
@@ -71,7 +73,9 @@ function CreateTeamForm(props) {
                         ))}
                     </select>
                 </div>
-                <button type="submit">Create Team</button>
+                <div className={"button-box"}>
+                    <button type="submit">Create Team</button>
+                </div>
             </form>
         </div>
     );

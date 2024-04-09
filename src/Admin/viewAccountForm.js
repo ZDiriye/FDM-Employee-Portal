@@ -143,7 +143,8 @@ export default function ViewAccountForm() {
                         <label>
                             Password:
                             <input
-                                type="password"
+                                className={"password"}
+                                type="text"
                                 name="password"
                                 value={selectedAccount.password}
                                 onChange={handleChange}
@@ -152,6 +153,7 @@ export default function ViewAccountForm() {
                         <label>
                             Email:
                             <input
+                                className={"email"}
                                 type="email"
                                 name="email"
                                 value={selectedAccount.email}
@@ -170,7 +172,7 @@ export default function ViewAccountForm() {
                       
                         <label>
                             Team ID:
-                            <select name="teamId" value={selectedAccount.teamId || ''} onChange={handleChange}>
+                            <select name="teamId" value={selectedAccount.teamId || ''} onChange={handleChange} className={"team-ID"}>
                                 <option value="">Select Team ID</option>
                                 {teams.map(team => (
                                     <option key={team.teamId} value={team.teamId}>
@@ -183,7 +185,7 @@ export default function ViewAccountForm() {
                         </label>
                         <label>
                             Client ID:
-                            <select name="clientId" value={selectedAccount.clientId || ''} onChange={handleChange}>
+                            <select name="clientId" value={selectedAccount.clientId || ''} onChange={handleChange} className={"client-ID"}>
                                 <option value="">Select Client ID</option>
                                 {clients.map(client => (
                                     <option key={client.clientId} value={client.clientId}>
@@ -193,10 +195,11 @@ export default function ViewAccountForm() {
                                 <option value={null}>Unassign Client</option> 
                             </select>
                         </label>
-
-                        <button type="button" onClick={handleEditAccount}>Save Changes</button>
-                        <button type="button" onClick={handleDeleteAccount}>Delete Account</button>
-                        <button type="button" onClick={handleCloseEditForm}>Cancel</button>
+                        <div className={"form-button-box"}>
+                            <button className={"form-button"} type="button" onClick={handleEditAccount}>Save Changes</button>
+                            <button className={"form-button"} type="button" onClick={handleDeleteAccount}>Delete Account</button>
+                            <button className={"form-button"} type="button" onClick={handleCloseEditForm}>Cancel</button>
+                        </div>
                     </form>
                 </div>
             )}

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-
+import "./Admin.css";
 export default function CreateAccountForm() {
     const [formData, setFormData] = useState({
         firstName: '',
@@ -38,6 +38,7 @@ export default function CreateAccountForm() {
         <div>
             
             <h2>Create New Account</h2>
+            <br/>
             <form onSubmit={handleSubmit}>
                 <div>
                     <label htmlFor="firstName">First Name:</label>
@@ -63,8 +64,9 @@ export default function CreateAccountForm() {
                 </div>
                 <div>
                     <label htmlFor="password">Password:</label>
-                    <input 
-                        type="password" 
+                    <input
+                        className={"password"}
+                        type="text"
                         id="password" 
                         name="password" 
                         value={formData.password} 
@@ -74,7 +76,8 @@ export default function CreateAccountForm() {
                 </div>
                 <div>
                     <label htmlFor="email">Email:</label>
-                    <input 
+                    <input
+                        className={"email"}
                         type="email" 
                         id="email" 
                         name="email" 
@@ -98,7 +101,10 @@ export default function CreateAccountForm() {
                         <option value="consultant">Consultant</option>
                     </select>
                 </div>
-                <button type="submit">Create Account</button>
+                <br/>
+                <div className={"button-box"}>
+                    <button type="submit">Create Account</button>
+                </div>
             </form>
         </div>
     );

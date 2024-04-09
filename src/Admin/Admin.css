@@ -33,7 +33,7 @@ button{
     margin-left: 2%;
     margin-right: 2%;
     width: 30%;
-    background-color: #4CAF50;
+    background-color: #4ab44e;
 }
 
 
@@ -98,6 +98,7 @@ tr:hover{
 
 .email{
     margin-left: 13.2%;
+    padding: 2.5%;
 }
 
 .password{
@@ -114,4 +115,11 @@ select{
 }
 /*client management page stuff*/
 
+.client-email{
+    margin-left:5.6%;
+    padding: 2.5%;
+}
 /*team management page stuff*/
+.manager-ID{
+    margin-left: 8%;
+}

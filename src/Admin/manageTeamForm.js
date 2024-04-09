@@ -84,7 +84,8 @@ function ViewTeams() {
     return (
         <div>
             <NavigationBar />
-            <h1>All Teams</h1>
+            <h1>Select a Team to Edit</h1>
+            <br/>
             <table>
                 <thead>
                     <tr>
@@ -110,15 +111,21 @@ function ViewTeams() {
             {showCreateForm && <CreateTeamForm getTeams ={getTeams}/>}
             {/* Button for creating a new team */}
             {!showCreateForm && (
-                <button onClick={handleCreateTeam}>
-                    Create Team
-                </button>
+            <div>
+                <br/>
+                <div className={"button-box"}>
+                    <button onClick={handleCreateTeam}>
+                        Add New Team
+                    </button>
+                </div>
+            </div>
             )}
 
             {/* Conditional rendering of edit form */}
             {selectedTeam && (
                 <div>
                     <h2>Edit Team Details</h2>
+                    <br/>
                     <form>
                         <div>
                             <strong>Team Id:</strong> {selectedTeam.teamId}
@@ -135,6 +142,7 @@ function ViewTeams() {
                         <label>
                             Manager Id:
                             <select
+                                className={"manager-ID"}
                                 name='managerId'
                                 value={selectedTeam.managerId}
                                 onChange={handleChange}
@@ -150,8 +158,10 @@ function ViewTeams() {
                         <div>
                             <strong>Manager Name:</strong> {selectedTeam.firstName} {selectedTeam.lastName}
                         </div>
-                        <button type="button" onClick={handleEditTeam}>Save Changes</button>
-                        <button type="button" onClick={confirmDelete}>Delete Team</button>
+                        <div className={"form-button-box"}>
+                            <button type="button" onClick={handleEditTeam}>Save Changes</button>
+                            <button type="button" onClick={confirmDelete}>Delete Team</button>
+                        </div>
                     </form>
                 </div>
             )}
