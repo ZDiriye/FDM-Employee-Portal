@@ -197,8 +197,8 @@ export default function ViewAccountForm() {
                         </label>
                         <div className={"form-button-box"}>
                             <button className={"form-button"} type="button" onClick={handleEditAccount}>Save Changes</button>
-                            <button className={"form-button"} type="button" onClick={handleDeleteAccount}>Delete Account</button>
-                            <button className={"form-button"} type="button" onClick={handleCloseEditForm}>Cancel</button>
+                            <button className={"form-delete-button"} type="button" onClick={handleDeleteAccount}>Delete Account</button>
+                            <button className={"form-cancel-button"} type="button" onClick={handleCloseEditForm}>Cancel</button>
                         </div>
                     </form>
                     <br/>

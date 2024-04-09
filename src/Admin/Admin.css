@@ -36,6 +36,20 @@ button{
     background-color: #4ab44e;
 }
 
+.form-button-box .form-cancel-button{
+    background-color: #f0ad4e;
+    margin-left: 2%;
+    margin-right: 2%;
+    width: 30%;
+}
+
+.form-button-box .form-delete-button{
+    background-color: #d32f2f;
+    margin-left: 2%;
+    margin-right: 2%;
+    width: 30%;
+}
+
 
 button:hover{
     background-color: #6c6c6c;

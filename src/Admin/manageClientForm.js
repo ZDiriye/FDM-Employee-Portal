@@ -119,8 +119,8 @@ function ViewClients() {
                         </label>
                         <br/>
                         <div className={"form-button-box"}>
-                            <button className={"form-button"} type="button" onClick={handleEditClient}>Update Client</button>
-                            <button className={"form-button"} type="button" onClick={handleDeleteClient}>Delete Client</button>
+                            <button className={"form-button"} type="button" onClick={handleEditClient}>Save Changes</button>
+                            <button className={"form-delete-button"} type="button" onClick={handleDeleteClient}>Delete Client</button>
                         </div>
                     </form>
                     <br/>

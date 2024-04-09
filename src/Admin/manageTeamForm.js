@@ -160,7 +160,7 @@ function ViewTeams() {
                         </div>
                         <div className={"form-button-box"}>
                             <button className={"form-button"} type="button" onClick={handleEditTeam}>Save Changes</button>
-                            <button className={"form-button"} type="button" onClick={confirmDelete}>Delete Team</button>
+                            <button className={"form-delete-button"} type="button" onClick={confirmDelete}>Delete Team</button>
                         </div>
                     </form>
                     <br/>
