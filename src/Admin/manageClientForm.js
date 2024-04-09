@@ -123,6 +123,7 @@ function ViewClients() {
                             <button className={"form-button"} type="button" onClick={handleDeleteClient}>Delete Client</button>
                         </div>
                     </form>
+                    <br/>
                 </div>
             )}
         </div>

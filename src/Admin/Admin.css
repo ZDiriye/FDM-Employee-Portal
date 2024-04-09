@@ -120,6 +120,10 @@ select{
     padding: 2.5%;
 }
 /*team management page stuff*/
-.manager-ID{
-    margin-left: 8%;
+html form .manager-ID{
+ margin-left: 6.1%
+}
+
+.manager-ID-2{
+    margin-left: 5.5%;
 }

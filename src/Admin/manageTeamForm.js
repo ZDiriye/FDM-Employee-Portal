@@ -159,10 +159,11 @@ function ViewTeams() {
                             <strong>Manager Name:</strong> {selectedTeam.firstName} {selectedTeam.lastName}
                         </div>
                         <div className={"form-button-box"}>
-                            <button type="button" onClick={handleEditTeam}>Save Changes</button>
-                            <button type="button" onClick={confirmDelete}>Delete Team</button>
+                            <button className={"form-button"} type="button" onClick={handleEditTeam}>Save Changes</button>
+                            <button className={"form-button"} type="button" onClick={confirmDelete}>Delete Team</button>
                         </div>
                     </form>
+                    <br/>
                 </div>
             )}
         </div>

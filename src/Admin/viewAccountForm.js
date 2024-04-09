@@ -201,6 +201,7 @@ export default function ViewAccountForm() {
                             <button className={"form-button"} type="button" onClick={handleCloseEditForm}>Cancel</button>
                         </div>
                     </form>
+                    <br/>
                 </div>
             )}
         </div>

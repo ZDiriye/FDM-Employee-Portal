@@ -4,6 +4,12 @@ import useToken from './useToken';
 import { jwtDecode } from 'jwt-decode';
 import fdm_Logo from "./images/fdm-logo.png";
 import house_icon from "./images/house.png";
+import manage_client_icon from "./images/clients.png";
+import news_icon from "./images/newspaper.png";
+import team_icon from "./images/team (1).png";
+import manage_account_icon from "./images/manageaccount.png";
+import manage_team_icon from "./images/manageteam.png";
+import client_info_icon from "./images/clientinfo.png";
 import "./NavBar.css";
 
 const NavigationBar = () => {
@@ -31,21 +37,21 @@ const NavigationBar = () => {
   const navLinks = {
     employee: [
       { name: "Home", path: "./Homepage", icon: house_icon},
-      { name: "News Feed", path: "/PostsPage" },
-      { name:"Team news feed", path:"/TeamPostsPage"}
+      { name: "News Feed", path: "/PostsPage", icon:news_icon},
+      { name:"Team news feed", path:"/TeamPostsPage", icon:team_icon}
     ],
     manager: [
-      { name: "Dashboard", path: "/dashboard" },
-      { name: "Manage Users", path: "/manage-users" },
+      { name: "Dashboard", path: "/dashboard", icon: house_icon },
+      { name: "Manage Users", path: "/manage-users", icon: manage_account_icon },
     ],
     consultant: [
-      { name: "Clients", path: "/consultations" },
+      { name: "Clients", path: "/consultations", icon: client_info_icon},
     ],
     admin: [
       { name: "Home", path: "./Homepage", icon: house_icon},
-      { name: "Manage Accounts", path: "/manageAccount" },
-      { name: "Teams", path: "/manageTeam" },
-      { name: "Clients", path: "/manageClient" },
+      { name: "Manage Accounts", path: "/manageAccount", icon:manage_account_icon},
+      { name: "Teams", path: "/manageTeam", icon:manage_team_icon },
+      { name: "Clients", path: "/manageClient", icon:manage_client_icon },
     ]
   };
 

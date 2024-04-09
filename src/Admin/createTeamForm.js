@@ -59,7 +59,8 @@ function CreateTeamForm(props) {
                 </div>
                 <div>
                     <label htmlFor="managerId">Manager ID:</label>
-                    <select 
+                    <select
+                        className={"manager-ID-2"}
                         id="managerId" 
                         value={managerId} 
                         onChange={(event) => setManagerId(event.target.value)} 
