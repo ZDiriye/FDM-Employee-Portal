@@ -9,7 +9,46 @@ import "./Homepage.css";
 
 
 
+function EmployeeDirectory() {
+  const [employees, setEmployees] = useState([]);
 
+  useEffect(() => {
+    // Fetch employee data from your API
+    axios.get('http://localhost:3001/getEmployees')
+      .then(response => {
+        setEmployees(response.data);
+      })
+      .catch(error => {
+        console.error("Error fetching employees:", error);
+      });
+  }, []);
+
+  return (
+    <div>
+      <h2>Employee Directory</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Team</th>
+            <th>Position</th>
+          </tr>
+        </thead>
+        <tbody>
+          {employees.map(employee => (
+            <tr key={employee.id}>
+              <td>{employee.firstName}{employee.lastName}</td>
+              <td>{employee.email}</td>
+              <td>{employee.teamId}</td>
+              <td>{employee.type}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
 
 
 
@@ -83,6 +122,7 @@ export default function Homepage() {
     <div>
       <NavigationBar/>
       <MainContent username={name}/>
+      <EmployeeDirectory/>
       <Footer />
     </div>
   );
