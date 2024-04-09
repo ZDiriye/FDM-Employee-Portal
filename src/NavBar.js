@@ -10,6 +10,7 @@ import team_icon from "./images/team (1).png";
 import manage_account_icon from "./images/manageaccount.png";
 import manage_team_icon from "./images/manageteam.png";
 import client_info_icon from "./images/clientinfo.png";
+import dashboard_icon from "./images/dashboard.png"
 import "./NavBar.css";
 
 const NavigationBar = () => {
@@ -41,7 +42,7 @@ const NavigationBar = () => {
       { name:"Team news feed", path:"/TeamPostsPage", icon:team_icon}
     ],
     manager: [
-      { name: "Dashboard", path: "/dashboard", icon: house_icon },
+      { name: "Dashboard", path: "/dashboard", icon: dashboard_icon },
       { name: "Manage Users", path: "/manage-users", icon: manage_account_icon },
     ],
     consultant: [
