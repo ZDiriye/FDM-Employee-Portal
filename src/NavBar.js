@@ -78,7 +78,7 @@ const NavigationBar = () => {
       <a href="/" onClick={(e) => {
           e.preventDefault(); // Prevent the default anchor link behavior
           handleLogout(); // Call your logout function
-        }} className="nav-link" alt="Logout">
+        }} className="logout-link" alt="Logout">
           Logout
       </a>
         <img src={fdm_Logo} alt="App Logo" className="app-logo" />
