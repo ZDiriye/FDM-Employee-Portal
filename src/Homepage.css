@@ -48,8 +48,8 @@ main {
   grid-template-rows: 30% auto auto;
   grid-template-areas: 
     "content latestPost"
-    ". TeamPost"
-    ". payslip";
+    "directory TeamPost"
+    "directory payslip";
   gap: 20px;
   padding: 20px;
   height: 75.5vh; /* Combined duplicated main selectors */
@@ -126,9 +126,9 @@ main {
 /* Payslip section */
 .payslip-section {
   grid-area: payslip;
-  height: 70%;
   margin-top: 0%;
-}
+  height: auto; /* allow the content to define the height */
+  max-height: 70%; /* keep the max height if needed */}
 
 /* No posts message */
 .no-posts {
@@ -145,10 +145,29 @@ footer {
   background-color: #333;
   color: white;
   margin-top: 40px;
+  
+  
 }
 
 /* Rights reserved text */
 .rights-reserved {
   margin: 0;
   font-size: 0.85em;
+}
+
+
+.employee-directory {
+  grid-area: directory;
+  margin-top: -10%;
+  width: 60%;
+  height: 60%;
+  /*width: 60%; /* Or whatever width you prefer */
+  /*margin: 0 auto; /* This will center the directory if there is space on the sides */
+  /*overflow-x: auto; /* Adds a scrollbar if the table is wider than the container */
+}
+
+@media (max-width: 768px) {
+  .employee-directory {
+    max-width: 100%;
+  }
 }
