@@ -23,7 +23,7 @@ function EmployeeDirectory() {
   }, []);
 
   return (
-    <div>
+    <div className="employee-directory">
       <h2>Employee Directory</h2>
       <table>
         <thead>
@@ -112,6 +112,9 @@ function MainContent({ username }) {
   return (
     <main >
       {username && <h2 className="username-heading">Hello {username}</h2>}  
+
+      <EmployeeDirectory/>
+
       <div>
             <h2 className="general-news-feed-title">General News feed</h2>
             {latestPost && (
@@ -139,10 +142,9 @@ function MainContent({ username }) {
             </Link>
           )}
         </div>
-        <div className="payslip-section">
+
         <PayslipSelector userId={userId} /> {/* Pass userId or any needed props */}
-              
-        </div>
+
     </main>
   );
 }
@@ -179,7 +181,7 @@ export default function Homepage() {
     <div>
       <NavigationBar/>
       <MainContent username={name}/>
-      <EmployeeDirectory/>
+      
       <Footer />
     </div>
   );
