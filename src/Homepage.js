@@ -59,63 +59,61 @@ function MainContent({ username }) {
 
   let teamId = '';
   let userId = '';
+  let userType = '';
 
   if (token) {
       const decodedToken = jwtDecode(token);
       teamId = decodedToken.TeamID;
       userId = decodedToken.userID;
+      userType = decodedToken.Type;
   }
 
   
-    useEffect(() => {
-        axios.post('http://localhost:3001/viewPost') 
-            .then(response => {
-                if(response.data.length > 0) {
-                    setLatestPost(response.data[0]);
-                } else {
-                    setLatestPost(null);
-                }
-            })
-            .catch(error => {
-                console.error("Error fetching posts:", error);
-            });
-            axios.post('http://localhost:3001/teamViewPost', { teamId })
-              .then(response => {
-                  if (response.data.length > 0) {
-                      console.log(response.data[0]); // This will log only the first post
-                      setLatestTeamPost([response.data[0]]); // Save only the first post to state
-                      setMessage('');
-                  } else if (!response.data.validation) {
-                      // Handle case with message but no posts
-                      console.log("this is the TeamID :", teamId);
-                      if (!teamId){
-                          const noPostsMessage = "you need to be assigned to a team to view the Team News Feed";
-                          setMessage(noPostsMessage);
-                          setLatestTeamPost([]);
-                      }
-                      else{
-                          const noPostsMessage = response.data.message || 'No posts found.';
-                          setMessage(noPostsMessage);
-                          setLatestTeamPost([]);
-                      }
-                  }
-              })
-            .catch(error => {
-                // Always good to handle errors
-                console.error('Error fetching the team post:', error);
-                setMessage('Error loading posts.');
-                setLatestTeamPost([]);
-            });
-    }, []);
+  useEffect(() => {
+    // Checks to exclude admin from seeing both general and team news feeds
+    if (userType !== 'admin') {
+      axios.post('http://localhost:3001/viewPost')
+        .then(response => {
+          if(response.data.length > 0) {
+            setLatestPost(response.data[0]);
+          } else {
+            setLatestPost(null);
+          }
+        })
+        .catch(error => {
+          console.error("Error fetching posts:", error);
+        });
 
+      axios.post('http://localhost:3001/teamViewPost', { teamId })
+        .then(response => {
+          if (response.data.length > 0) {
+            setLatestTeamPost([response.data[0]]); // Save only the first post to state
+            setMessage('');
+          } else if (!response.data.validation) {
+            const noPostsMessage = teamId ? 'No posts found.' : "You need to be assigned to a team to view the Team News Feed";
+            setMessage(noPostsMessage);
+            setLatestTeamPost([]);
+          }
+        })
+        .catch(error => {
+          console.error('Error fetching the team post:', error);
+          setMessage('Error loading posts.');
+          setLatestTeamPost([]);
+        });
+    }
+  }, [teamId, userType]);
+
+  
 
   return (
-    <main >
+    <main>
       {username && <h2 className="username-heading">Hello {username}</h2>}  
 
       <EmployeeDirectory/>
 
-      <div>
+      {userType !== 'admin' && (
+        <>
+          <div className="general-news-feed">
             <h2 className="general-news-feed-title">General News feed</h2>
             {latestPost && (
                <Link to="/PostsPage" className="post-container">
@@ -127,24 +125,25 @@ function MainContent({ username }) {
                 </Link>
             )}
             {!latestPost && <p className="no-posts">No posts to display</p>}
+          </div>
           
-        </div> 
-        <div className="team-news-feed">
-          <h2 className="team-news-feed-title">Team News Feed</h2>
-          {latestTeamPost && (
-            <Link to="/TeamPostsPage" className="TeamPost-container"> 
-              <div>
-                <h2 className="post-title">{latestTeamPost[0].title}</h2>
-                <p className="post-date">Date: {new Date(latestTeamPost[0].postDate).toLocaleString()}</p>
-                <p className="post-text"> {latestTeamPost[0].text}</p>
+          <div className="team-news-feed">
+            <h2 className="team-news-feed-title">Team News Feed</h2>
+            {latestTeamPost && latestTeamPost.length > 0 && (
+              <Link to="/TeamPostsPage" className="TeamPost-container">
+                <div>
+                  <h2 className="post-title">{latestTeamPost[0].title}</h2>
+                  <p className="post-date">Date: {new Date(latestTeamPost[0].postDate).toLocaleString()}</p>
+                  <p className="post-text"> {latestTeamPost[0].text}</p>
+                </div>
+              </Link>
+            )}
+            {(!latestTeamPost || latestTeamPost.length === 0) && <p className="no-posts">{message}</p>}
+          </div>
+        </>
+      )}
 
-              </div>
-            </Link>
-          )}
-        </div>
-
-        <PayslipSelector userId={userId} /> {/* Pass userId or any needed props */}
-
+      <PayslipSelector userId={userId} />
     </main>
   );
 }
@@ -153,7 +152,7 @@ function MainContent({ username }) {
 
 function Footer() {
   return (
-    <footer style={{ padding: '20px', textAlign: 'center', backgroundColor: 'darkgray', color: 'white' }}>
+    <footer >
       <p className="rights-reserved">Employee Portal - All rights reserved ©{new Date().getFullYear()}</p>
     </footer>
   );
@@ -169,16 +168,22 @@ export default function Homepage() {
 
   const { token } = useToken(); // Use the token from your custom hook
   let name = '';
+  let userType = '';
 
 
   if (token) {
     const decodedToken = jwtDecode(token);
-    // Assume the token has a claim 'userId', change to 'username' if necessary
-    name = decodedToken.Name; // Adjust the key based on your token structure
+
+    name = decodedToken.Name;
+    userType = decodedToken.Type;
   }
+
+  const homepageClass = userType === 'admin' ? 'admin' : 'homepage';
+
+  console.log("this is the class: ", homepageClass);
  
   return (
-    <div>
+    <div className={homepageClass}>
       <NavigationBar/>
       <MainContent username={name}/>
       
