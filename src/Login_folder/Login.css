@@ -51,7 +51,13 @@
   border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
+  align-self: center;
 }
+
+.verify-btn{
+  align-items: center;
+}
+
 .resend-otp-button, .back-button {
   width: 180px;
 }

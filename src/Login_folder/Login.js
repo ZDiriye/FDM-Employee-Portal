@@ -1,7 +1,5 @@
 import React, {useState}  from 'react'
 import { useNavigate } from 'react-router-dom';
-import { Button } from 'antd';
-import PropTypes from 'prop-types';
 import './Login.css';
 import axios from 'axios';
 import useToken from '../useToken';
@@ -157,7 +155,7 @@ const Login = () => {
             )}
             {step === 2 && (
                 <>
-                    <h2>Enter OTP</h2>
+                    <h1>Enter OTP</h1>
                     <form onSubmit={(e) => {
                     e.preventDefault();
                     verifyOTP();
