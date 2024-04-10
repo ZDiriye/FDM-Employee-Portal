@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { pdf, Page, Text, View, Document, StyleSheet, PDFDownloadLink   } from '@react-pdf/renderer';
 import { saveAs } from 'file-saver';
+import "./payslip.css";
 
 const styles = StyleSheet.create({
   page: {
@@ -71,11 +72,11 @@ const PayslipDocument = ({ payslipData }) => (
           <View style={styles.detailColumn}>
             <View style={styles.detailItem}>
               <Text style={styles.label}>Gross Pay:</Text>
-              <Text style={styles.value}>{payslipData.grossPay}</Text>
+              <Text style={styles.value}>£ {payslipData.grossPay}</Text>
             </View>
             <View style={styles.detailItem}>
               <Text style={styles.label}>Net Pay:</Text>
-              <Text style={styles.value}>{payslipData.netPay}</Text>
+              <Text style={styles.value}>£ {payslipData.netPay}</Text>
             </View>
           </View>
         </View>
@@ -83,21 +84,21 @@ const PayslipDocument = ({ payslipData }) => (
           <View style={styles.detailColumn}>
             <View style={styles.detailItem}>
               <Text style={styles.label}>Tax Deducted:</Text>
-              <Text style={styles.value}>{payslipData.taxAmount}</Text>
+              <Text style={styles.value}>£ {payslipData.taxAmount}</Text>
             </View>
             <View style={styles.detailItem}>
               <Text style={styles.label}>Other Deductions:</Text>
-              <Text style={styles.value}>{payslipData.otherDeductions}</Text>
+              <Text style={styles.value}>£ {payslipData.otherDeductions}</Text>
             </View>
           </View>
           <View style={styles.detailColumn}>
             <View style={styles.detailItem}>
               <Text style={styles.label}>Employer Contributions:</Text>
-              <Text style={styles.value}>{payslipData.employerContrib}</Text>
+              <Text style={styles.value}>£ {payslipData.employerContrib}</Text>
             </View>
             <View style={styles.detailItem}>
               <Text style={styles.label}>Employee Contributions:</Text>
-              <Text style={styles.value}>{payslipData.employeeContrib}</Text>
+              <Text style={styles.value}>£ {payslipData.employeeContrib}</Text>
             </View>
           </View>
         </View>
@@ -107,23 +108,6 @@ const PayslipDocument = ({ payslipData }) => (
 );
 
 
-
-
-
-
-/*
-const PayslipDocument = ({ payslipData }) => (
-  <Document>
-    <Page size="A4" style={styles.page}>
-      <View style={styles.section}>
-        <Text style={styles.title}>Payslip for Period: {payslipData.startDate} to {payslipData.endDate}</Text>
-        <Text>Payslip ID: {payslipData.payslipId}</Text>
-        <Text>Amount: {payslipData.payAmount}</Text>
-      </View>
-    </Page>
-  </Document>
-);
-*/
 const PayslipSelector = () => {
     const [payslips, setPayslips] = useState([]);
     const [selectedPayslipId, setSelectedPayslipId] = useState("");
@@ -164,19 +148,25 @@ const PayslipSelector = () => {
     };
   
     return (
-      <div>
-        <select value={selectedPayslipId} onChange={handleSelectionChange}>
-          <option value="">Select a payslip</option>
-          {payslips.map(payslip => (
-            <option key={payslip.payslipId} value={payslip.payslipId}>
-              Payslip {payslip.payslipId} - {payslip.Date}
-            </option>
-          ))}
-        </select>
-        <button onClick={handleDownloadClick} disabled={!selectedPayslipId || loading}>
-          {loading ? 'Generating...' : 'Download Payslip'}
-        </button>
-      </div>
+      <div className="payslip-section">
+          <h2>Latest Payslip</h2>
+          <div className="payslip-controls">
+          {payslips && payslips.length > 0 && (
+            <select value={selectedPayslipId} onChange={(e) => setSelectedPayslipId(e.target.value) } >
+              <option value="">Select a payslip</option>
+              {payslips.map((payslip) => (
+                <option key={payslip.payslipId} value={payslip.payslipId}>
+                  Payslip {payslip.payslipId} - {payslip.date}
+                </option>
+              ))}
+            </select>
+          )}
+         
+          <button onClick={handleDownloadClick} disabled={!selectedPayslipId || loading}>
+            {loading ? 'Generating...' : 'Download Payslip'}
+          </button>
+          </div>
+        </div>
     );
   };
   
