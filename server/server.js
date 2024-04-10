@@ -14,6 +14,7 @@ const deletePost = require('./RemovePost');
 const viewTeamPost = require('./ViewTeamPost');
 const { uploadTeamMiddleware, addTeamPost } = require('./addTeamPost');
 const deleteTeamPost = require('./RemoveTeamPost');
+const payslip = require('./payslip');
 const getAccounts = require('./getAccounts');
 const createAccount = require('./createAccount');
 const updateAccount = require('./updateAccount')
@@ -57,6 +58,7 @@ app.delete('/deletePost', deletePost);
 app.post("/teamViewPost", viewTeamPost);
 app.post("/addTeamPost", uploadTeamMiddleware, addTeamPost);
 app.delete('/deleteTeamPost', deleteTeamPost);
+app.post('/getpayslip', payslip);
 app.get('/api/accounts/view', getAccounts);
 app.post('/api/accounts/add', createAccount);
 app.post('/api/accounts/update', updateAccount);
