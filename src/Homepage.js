@@ -5,8 +5,7 @@ import useToken from './useToken';
 import { Link } from 'react-router-dom';
 import NavigationBar from './NavBar';
 import "./Homepage.css";
-
-
+import PayslipSelector from './Payslip/payslip';
 
 
 function EmployeeDirectory() {
@@ -51,11 +50,23 @@ function EmployeeDirectory() {
 }
 
 
-
 function MainContent({ username }) {
 
   const [latestPost, setLatestPost] = useState(null);
+  const [latestTeamPost, setLatestTeamPost] = useState(null);
+  const [message, setMessage] = useState(''); // For handling messages like "No posts found."
+  const { token } = useToken();
 
+  let teamId = '';
+  let userId = '';
+
+  if (token) {
+      const decodedToken = jwtDecode(token);
+      teamId = decodedToken.TeamID;
+      userId = decodedToken.userID;
+  }
+
+  
     useEffect(() => {
         axios.post('http://localhost:3001/viewPost') 
             .then(response => {
@@ -68,6 +79,33 @@ function MainContent({ username }) {
             .catch(error => {
                 console.error("Error fetching posts:", error);
             });
+            axios.post('http://localhost:3001/teamViewPost', { teamId })
+              .then(response => {
+                  if (response.data.length > 0) {
+                      console.log(response.data[0]); // This will log only the first post
+                      setLatestTeamPost([response.data[0]]); // Save only the first post to state
+                      setMessage('');
+                  } else if (!response.data.validation) {
+                      // Handle case with message but no posts
+                      console.log("this is the TeamID :", teamId);
+                      if (!teamId){
+                          const noPostsMessage = "you need to be assigned to a team to view the Team News Feed";
+                          setMessage(noPostsMessage);
+                          setLatestTeamPost([]);
+                      }
+                      else{
+                          const noPostsMessage = response.data.message || 'No posts found.';
+                          setMessage(noPostsMessage);
+                          setLatestTeamPost([]);
+                      }
+                  }
+              })
+            .catch(error => {
+                // Always good to handle errors
+                console.error('Error fetching the team post:', error);
+                setMessage('Error loading posts.');
+                setLatestTeamPost([]);
+            });
     }, []);
 
 
@@ -75,7 +113,7 @@ function MainContent({ username }) {
     <main >
       {username && <h2 className="username-heading">Hello {username}</h2>}  
       <div>
-            <h2>General News feed</h2>
+            <h2 className="general-news-feed-title">General News feed</h2>
             {latestPost && (
                <Link to="/PostsPage" className="post-container">
                   <div>
@@ -87,10 +125,29 @@ function MainContent({ username }) {
             )}
             {!latestPost && <p className="no-posts">No posts to display</p>}
           
-        </div>    
+        </div> 
+        <div className="team-news-feed">
+          <h2 className="team-news-feed-title">Team News Feed</h2>
+          {latestTeamPost && (
+            <Link to="/TeamPostsPage" className="TeamPost-container"> 
+              <div>
+                <h2 className="post-title">{latestTeamPost[0].title}</h2>
+                <p className="post-date">Date: {new Date(latestTeamPost[0].postDate).toLocaleString()}</p>
+                <p className="post-text"> {latestTeamPost[0].text}</p>
+
+              </div>
+            </Link>
+          )}
+        </div>
+        <div className="payslip-section">
+        <PayslipSelector userId={userId} /> {/* Pass userId or any needed props */}
+              
+        </div>
     </main>
   );
 }
+
+
 
 function Footer() {
   return (
