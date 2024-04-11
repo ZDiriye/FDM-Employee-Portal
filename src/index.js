@@ -17,6 +17,9 @@ import ManageClient from './Admin/manageClientForm';
 import ManageTeam from './Admin/manageTeamForm';
 import GetClient from './Consultant/ViewClientInfo';
 import PersonalInfo from './updatePersonalInfo/updateInfoForm';
+import ViewLeaveRequest from './leaveRequest/viewLeaveRequest';
+import AddLeaveRequestForm from './leaveRequest/addLeaveRequestForm';
+import ManageLeaveRequest from './leaveRequest/manageLeaveRequest';
 
 const Main = () => {
   return (
@@ -36,6 +39,9 @@ const Main = () => {
         <Route path="/consultations" element={<PrivateRoute><GetClient /></PrivateRoute>}/>
         <Route path="*" element={<Navigate to="/" />} />
         <Route path="/PersonalInfo" element={<PrivateRoute><PersonalInfo /></PrivateRoute>}/>
+        <Route path="/ViewLeaveRequest" element={<PrivateRoute><ViewLeaveRequest /></PrivateRoute>}/>
+        <Route path="/ManageLeaveRequest" element={<ManageLeaveRequest />}/>
+        <Route path="/AddLeaveRequestForm" element={<AddLeaveRequestForm />}/>
       </Routes>
     </>
   );
