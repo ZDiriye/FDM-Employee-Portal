@@ -36,7 +36,12 @@ const getClient = require('./getClient');
 const getClientInfo = require('./getClientInfo');
 const getEmployees = require('./getEmployees');
 const updatePersonalInfo = require('./updatePersonalInfo');
-
+const createLeaveRequest = require('./createLeaveRequest');
+const getUserLeaveRequest = require('./getUserLeaveRequest');
+const countUsersLeaveRequests = require('./countUsersLeaveRequests');
+const getManagedLeaveRequest = require('./getManagedLeaveRequest');
+const getManagerId = require('./getManagerId');
+const updateLeaveRequestApproval = require('./updateLeaveRequestApproval');
 
 const app = express()
 app.use(cors())
@@ -81,6 +86,12 @@ app.delete('/api/clients/delete',deleteClient);
 app.get('/api/client/getInfo',getClientInfo);
 app.get('/getEmployees',getEmployees);
 app.post('/updatePersonalInfo', updatePersonalInfo);
+app.post('/api/leaveRequest/add', createLeaveRequest);
+app.get('/api/leaveRequest/getUserLeaveRequest', getUserLeaveRequest);
+app.get('/api/leaveRequest/countUserLeaveRequest', countUsersLeaveRequests);
+app.get('/api/leaveRequest/getManagedLeaveRequest', getManagedLeaveRequest);
+app.get('/api/leaveRequest/getManagerId', getManagerId);
+app.post('/api/leaveRequest/update', updateLeaveRequestApproval);
 
 
 app.listen(3001, () => console.log('Listening at port 3001'))

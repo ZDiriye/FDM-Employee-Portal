@@ -17,7 +17,7 @@ export default function SuccessPage() {
         </div>
 
         <button4>
-            <a href={"/"}>View Leave Requests</a>
+            <a href={"/"}>Go Back</a>
         </button4>
        </body>
        </div>

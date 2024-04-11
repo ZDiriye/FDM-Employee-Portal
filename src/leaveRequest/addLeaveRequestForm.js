@@ -16,6 +16,7 @@ function AddLeaveRequestForm() {
         const decodedToken = jwtDecode(token);
         console.log(decodedToken);
         id = decodedToken.userID;
+        console.log(id)
     }
     const [formData, setFormData] = useState({
         userId: id,
@@ -52,10 +53,10 @@ function AddLeaveRequestForm() {
             console.log(formData);
             const confirmed = window.confirm("Are you sure you want to submit this leave request?");
             if (confirmed) {
-                const response = await axios.post('http://localhost:5000/api/leaveRequest/add', formData);
+                const response = await axios.post('http://localhost:3001/api/leaveRequest/add', formData);
                 console.log('Leave request submitted successfully:', response.data);
-                window.location.href = '/SuccessPage';
-            }
+                window.location.href = '/successPage';
+                        }
         } catch (error) {
             alert("Failed to create leave request. Please try again later.");
         }

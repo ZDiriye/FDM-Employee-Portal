@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useCallback} from 'react';
 import axios from 'axios';
 import './formatting.css';
-
+import useToken from "../useToken";
+import {jwtDecode} from "jwt-decode";
 import NavigationBar from "../NavBar";
 
 
@@ -10,24 +11,51 @@ function ManageLeaveRequest() {
    const [selectedApprovals, setSelectedApprovals] = useState([]);
    const [filter, setFilter] = useState('Pending');
    const [orderBy, setOrderBy] = useState('Newest');
+   const [managerId, setManagerId] = useState(null);
 
+
+   const { token } = useToken();
+   let userId = '';
+   let teamId = '';
+   if (token) {
+       const decodedToken = jwtDecode(token);
+       userId = decodedToken.userId;
+       teamId = decodedToken.TeamID;
+       console.log(decodedToken)
+       }
+
+
+    // Function to fetch leave requests from the server
+   const fetchManagerId = useCallback(async () => {
+    try {            
+     const response = await axios.get(`http://localhost:3001/api/leaveRequest/getManagerId?teamId=${teamId}`); 
+     //can i test whats in response
+     console.log(response.data);
+     setManagerId(response.data[0].managerId);
+    } catch (error) {
+        console.error('Error fetching leave requests:', error);
+    }
+    }, [teamId]);
 
    // Function to fetch leave requests from the server
    const fetchLeaveRequests = useCallback(async () => {
-       try {
-           const response = await axios.get(`http://localhost:5000/api/leaveRequest/getManagedLeaveRequest?filter=${filter}&orderBy=${orderBy}`);
-           setLeaveRequests(response.data);
-           setSelectedApprovals(response.data.map(request => ({ userId: request.userId, dateSubmitted: request.dateSubmitted, approvalStatus: 'Pending'})));
+       try {            
+        const response = await axios.get(`http://localhost:3001/api/leaveRequest/getManagedLeaveRequest?filter=${filter}&orderBy=${orderBy}&managerId=${managerId}`); 
+        //can i test whats in response
+        console.log(response.data);
+        setLeaveRequests(response.data);
+        setSelectedApprovals(response.data.map(request => ({ userId: request.userId, dateSubmitted: request.dateSubmitted, approvalStatus: 'Pending'})));
        } catch (error) {
            console.error('Error fetching leave requests:', error);
        }
-   }, [filter, orderBy]);
+   }, [filter, orderBy, managerId]);
 
 
    // Effect to fetch leave requests when filter or orderBy changes
    useEffect(() => {
-       fetchLeaveRequests();
-   }, [filter, orderBy, fetchLeaveRequests]);
+        fetchManagerId();
+        fetchLeaveRequests();
+   }, [filter, orderBy, fetchManagerId, fetchLeaveRequests]);
 
 
    // Handle change in filter selection
@@ -51,20 +79,21 @@ function ManageLeaveRequest() {
 
 
    const handleSubmit = async () => {
-       const selectedRequests = selectedApprovals.filter(approval => approval.approvalStatus !== 'Pending');
-       if (selectedRequests.length === 0) {
-           alert('Nothing has been selected.');
-           return; // Exit the function if no request has been selected
-       }
-       if (window.confirm('Are you sure you want to submit?')) {
-           try {
-               await axios.post('http://localhost:5000/api/leaveRequest/update', selectedRequests);
-               fetchLeaveRequests();
-           } catch (error) {
-               console.error('Error updating approvals:', error);
-           }
-       }
-   };
+        const selectedRequests = selectedApprovals.filter(approval => approval.approvalStatus !== 'Pending');
+        if (selectedRequests.length === 0) {
+            alert('Nothing has been selected.');
+            return; // Exit the function if no request has been selected
+        }
+        if (window.confirm('Are you sure you want to submit?')) {
+            try {
+                await axios.post(`http://localhost:3001/api/leaveRequest/update`, selectedRequests);
+                fetchLeaveRequests();
+            } catch (error) {
+                console.error('Error updating approvals:', error);
+            }
+        }
+    };
+
   
 
    return (
@@ -170,11 +199,6 @@ function ManageLeaveRequest() {
 
                </div>
            </div>
-
-
-
-
-
 
        </div>
            </div>

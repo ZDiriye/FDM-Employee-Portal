@@ -20,6 +20,7 @@ import PersonalInfo from './updatePersonalInfo/updateInfoForm';
 import ViewLeaveRequest from './leaveRequest/viewLeaveRequest';
 import AddLeaveRequestForm from './leaveRequest/addLeaveRequestForm';
 import ManageLeaveRequest from './leaveRequest/manageLeaveRequest';
+import SuccessPage from './leaveRequest/successPage'
 
 const Main = () => {
   return (
@@ -42,6 +43,7 @@ const Main = () => {
           <Route path="/ViewLeaveRequest" element={<PrivateRoute><ViewLeaveRequest /></PrivateRoute>}/>
           <Route path="/ManageLeaveRequest" element={<ManageLeaveRequest />}/>
           <Route path="/AddLeaveRequestForm" element={<AddLeaveRequestForm />}/>
+          <Route path="/SuccessPage" element={<SuccessPage />}/>
         </Routes>
       </>
   );
