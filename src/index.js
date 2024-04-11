@@ -16,7 +16,7 @@ import ManageAccount from './Admin/manageAccountsForm';
 import ManageClient from './Admin/manageClientForm';
 import ManageTeam from './Admin/manageTeamForm';
 import GetClient from './Consultant/ViewClientInfo';
-
+import PersonalInfo from './updatePersonalInfo/updateInfoForm';
 
 const Main = () => {
   return (
@@ -35,6 +35,7 @@ const Main = () => {
         <Route path="/ManageTeam" element={<PrivateRoute><ManageTeam /></PrivateRoute>} />
         <Route path="/consultations" element={<PrivateRoute><GetClient /></PrivateRoute>}/>
         <Route path="*" element={<Navigate to="/" />} />
+        <Route path="/PersonalInfo" element={<PrivateRoute><PersonalInfo /></PrivateRoute>}/>
       </Routes>
     </>
   );

@@ -38,6 +38,7 @@ const NavigationBar = () => {
   const navLinks = {
     employee: [
       { name: "Home", path: "./Homepage", icon: house_icon},
+      {name: "Account", path:"./PersonalInfo"},
       { name: "News Feed", path: "/PostsPage", icon:news_icon},
       { name:"Team news feed", path:"/TeamPostsPage", icon:team_icon}
     ],
