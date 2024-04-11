@@ -15,15 +15,15 @@ import "./NavBar.css";
 
 const NavigationBar = () => {
   const navigate = useNavigate();
-  
+
   const handleLogout = () => {
     // Clear the token from session storage
     sessionStorage.removeItem('token');
-    
+
     // Update the token state);
     navigate('/Login_folder/Login'); // Navigate to the login page
   };
-  
+
 
   const { token } = useToken();
   let userType = '';
@@ -40,14 +40,14 @@ const NavigationBar = () => {
       { name: "Home", path: "./Homepage", icon: house_icon},
       {name: "Account", path:"./PersonalInfo"},
       { name: "News Feed", path: "/PostsPage", icon:news_icon},
-      { name:"Team news feed", path:"/TeamPostsPage", icon:team_icon}
-      { name:"Leave requests", path: "/ViewLeaveRequest", icon:team_icon}
+      { name:"Team news feed", path:"/TeamPostsPage", icon:team_icon},
+      { name:"Leave requests", path: "/ViewLeaveRequest", icon:team_icon},
     ],
     manager: [
       { name: "Dashboard", path: "/dashboard", icon: dashboard_icon },
       { name: "Manage Users", path: "/manage-users", icon: manage_account_icon },
       { name:"Leave requests", path: "/ViewLeaveRequest", icon:team_icon},
-      { name:"Team Leave Requests", path: "/ManageLeaveRequest", icon:manage_team_icon}
+      { name:"Team Leave Requests", path: "/ManageLeaveRequest", icon:manage_team_icon},
     ],
     consultant: [
       { name: "Client Details", path: "/consultations", icon: client_info_icon},
@@ -60,35 +60,35 @@ const NavigationBar = () => {
     ]
   };
 
-  const userLinks = userType === 'admin' 
-  ? navLinks[userType] // Admin gets only admin links
-  : userType === 'manager' || userType === 'consultant'
-  ? [...navLinks.employee, ...navLinks[userType]] // Managers and consultants get employee links plus specific ones
-  : navLinks.employee; // Employees get only employee links
+  const userLinks = userType === 'admin'
+      ? navLinks[userType] // Admin gets only admin links
+      : userType === 'manager' || userType === 'consultant'
+          ? [...navLinks.employee, ...navLinks[userType]] // Managers and consultants get employee links plus specific ones
+          : navLinks.employee; // Employees get only employee links
 
   return (
-    <nav className="navbar">
-      <ul>
-        {userLinks.map((link, index) => (
-          <li key={index} className="nav-item">
-            <a href={link.path} className="nav-link">
-              {link.icon && <img src={link.icon} alt={link.name + " icon"} className="nav-icon" />}
-              {link.name}
-            </a>
-          </li>
-        ))}
-      </ul>
+      <nav className="navbar">
+        <ul>
+          {userLinks.map((link, index) => (
+              <li key={index} className="nav-item">
+                <a href={link.path} className="nav-link">
+                  {link.icon && <img src={link.icon} alt={link.name + " icon"} className="nav-icon" />}
+                  {link.name}
+                </a>
+              </li>
+          ))}
+        </ul>
 
-      <div className="logo-container">
-      <a href="/" onClick={(e) => {
-          e.preventDefault(); // Prevent the default anchor link behavior
-          handleLogout(); // Call your logout function
-        }} className="logout-link" alt="Logout">
-          Logout
-      </a>
-        <img src={fdm_Logo} alt="App Logo" className="app-logo" />
-      </div>
-    </nav>
+        <div className="logo-container">
+          <a href="/" onClick={(e) => {
+            e.preventDefault(); // Prevent the default anchor link behavior
+            handleLogout(); // Call your logout function
+          }} className="logout-link" alt="Logout">
+            Logout
+          </a>
+          <img src={fdm_Logo} alt="App Logo" className="app-logo" />
+        </div>
+      </nav>
   );
 };
 
