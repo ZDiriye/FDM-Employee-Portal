@@ -1,11 +1,11 @@
 const db = require('./dbPath');
 
 function createLeaveRequest(req, res) {
-  const { userId, startTime, endTime, description, dateSubmitted, Approval } = req.body;
+  const { userId, startTime, endTime, description, Approval , dateSubmitted} = req.body;
 
 
-  const insertLeaveRequestQuery = 'INSERT INTO leaveRequest (userId, startTime, endTime, description, dateSubmitted, Approval) VALUES (?, ?, ?, ?, ?, ?)';
-  db.run(insertLeaveRequestQuery, [userId, startTime, endTime, description, dateSubmitted, Approval], function(err) {
+  const insertLeaveRequestQuery = 'INSERT INTO leaveRequest (userId, startTime, endTime, description,  Approval, dateSubmitted,) VALUES (?, ?, ?, ?, ?, ?)';
+  db.run(insertLeaveRequestQuery, [userId, startTime, endTime, description, Approval, dateSubmitted], function(err) {
       if (err) {
           console.error('Error executing SQL query:', err.message);
           return res.status(500).json({ error: 'Internal server error' });
