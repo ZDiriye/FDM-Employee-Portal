@@ -10,7 +10,7 @@ form {
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     width: 100%;
-    max-width: 500px; /* Adjust based on your preference */
+    max-width: 500px; 
 }
 
 /* Style the text input for the title */
@@ -26,7 +26,7 @@ form textarea {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    height: 150px; /* You can adjust the height as needed */
+    height: 150px;
     font-size: 1rem;
 }
 

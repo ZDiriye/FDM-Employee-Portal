@@ -9,12 +9,12 @@
       " delete-blog-content "
       " delete-buttons ";
     margin-bottom: 20px;
-    max-height: 90vh; /* Adjust the value according to your needs */
+    max-height: 90vh; 
     /*overflow-y: auto;*/
 }
 
 .delete-blog {
-    width: 100%; /* Adjust the width to take the full width of the modal */
+    width: 100%; 
     max-height: 100%;
     margin: 0;
     padding: 20px;
@@ -103,7 +103,7 @@
     transition: background-color 0.3s ease;
     padding: 8px 16px;
     font-size: 0.875rem;
-    margin-left: auto; /* This will push the button to the right */
+    margin-left: auto; 
 }
 
 .delete-action-button {

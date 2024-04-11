@@ -52,7 +52,7 @@ main {
     "directory TeamPost"; 
   gap: 20px;
   padding: 20px;
-  height: 74.3vh; /* Combined duplicated main selectors */
+  height: 74.3vh; 
   align-items: start;
 }
 
@@ -134,8 +134,9 @@ main {
 .payslip-section {
   grid-area: payslip;
   margin-top: 0%;
-  height: auto; /* allow the content to define the height */
-  max-height: 70%; /* keep the max height if needed */}
+  height: auto;
+  max-height: 70%; 
+}
 
 /* No posts message */
 .no-posts {
@@ -172,9 +173,9 @@ footer {
   margin-top: -10%;
   width: 60%;
   height: 60%;
-  /*width: 60%; /* Or whatever width you prefer */
-  /*margin: 0 auto; /* This will center the directory if there is space on the sides */
-  /*overflow-x: auto; /* Adds a scrollbar if the table is wider than the container */
+  /*width: 60%;*/
+  /*margin: 0 auto; */
+  /*overflow-x: auto; */
 }
 
 
@@ -207,7 +208,7 @@ main.admin {
 /* Employee directory styles for admin */
 .employee-directory.admin {
   width: 100%;
-  overflow-x: auto; /* Adds a scrollbar if the table is wider than the container */
+  overflow-x: auto; 
   grid-area: dir_admin;
 }
 

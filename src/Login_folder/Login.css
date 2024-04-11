@@ -63,8 +63,8 @@
 }
 .button-container {
   display: flex;
-  justify-content: space-evenly; /* Adjust as necessary for your design */
-  margin-top: 20px; /* Space from the form above */
+  justify-content: space-evenly; 
+  margin-top: 20px; 
 }
 
 
@@ -72,8 +72,8 @@
 /* Adjust individual button widths if necessary */
 .resend-otp-button,
 .back-button {
-  flex-grow: 1; /* Makes both buttons take up equal space */
-  margin: 0 10px; /* Space between buttons */
+  flex-grow: 1;
+  margin: 0 10px;
 }
 
 
@@ -103,25 +103,19 @@
 
 
 .simple-nav {
-  background-color: #333; /* Dark background for the nav bar */
-  color: #fff; /* White text color */
-  padding: 10px 20px; /* Some padding around the content */
-  text-align: right; /* Align the nav content to the left */
-  position: fixed; /* Fixed at the top */
-  width: 100%; /* Full width */
-  top: 0; /* At the very top of the page */
-  left: 0; /* At the left edge of the page */
-  z-index: 1000; /* Ensure it's above other content */
+  background-color: #333; 
+  color: #fff;
+  padding: 10px 20px;
+  text-align: right;
+  position: fixed;
+  width: 100%; 
+  top: 0; 
+  left: 0;
+  z-index: 1000; 
 }
 
 .nav-logo {
-  text-decoration: none; /* No underlines on the logo */
-  color: #fff; /* White text color */
-  font-weight: bold; /* Make it bold */
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold; 
 }
-
-/* Adjust the login container to not overlap with the navigation */
-
-
-/* Rest of your existing CSS for .login-container and other classes remains the same */
-

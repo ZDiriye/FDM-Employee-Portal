@@ -17,12 +17,12 @@ const styles = StyleSheet.create({
     fontSize: 24,
     textAlign: 'center',
     marginBottom: 12,
-    color: '#0B5D93', // FDM blue
+    color: '#0B5D93',
   },
   companyName: {
     fontSize: 18,
     textAlign: 'center',
-    color: '#0B5D93', // FDM blue
+    color: '#0B5D93', 
     fontWeight: 'bold',
     marginBottom: 4,
   },
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     margin: 10,
     padding: 10,
     flexGrow: 1,
-    backgroundColor: '#F2F2F2', // Light grey background for contrast
+    backgroundColor: '#F2F2F2',
     borderRadius: 5,
   },
   detailItem: {
@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 12,
     width: 140,
-    color: '#0B5D93', // FDM blue
+    color: '#0B5D93',
     fontWeight: 'bold',
   },
   value: {
