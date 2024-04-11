@@ -3,6 +3,8 @@ const db = require('./dbPath');
 function getUserLeaveRequest(req, res) {
     console.log(req.body); // Log the request body to see what data is being sent
     const userId= req.body.userId;
+
+
    let query = `
    SELECT
        leaveRequest.startTime,
@@ -18,6 +20,7 @@ function getUserLeaveRequest(req, res) {
 
    const filter = req.query.filter;
    const orderBy = req.query.orderBy;
+
 
 
    if (filter === 'Pending') {
