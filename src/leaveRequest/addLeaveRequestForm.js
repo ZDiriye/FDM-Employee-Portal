@@ -2,19 +2,28 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import './formatting.css';
 import NavigationBar from "../NavBar";
+import useToken from "../useToken";
+import {jwtDecode} from "jwt-decode";
 
 function AddLeaveRequestForm() {
     const currentDate = new Date().toISOString().split('T')[0];
     const currentTime = new Date().toLocaleTimeString([], { hour12: false, hour: '2-digit', minute: '2-digit' });
     const formattedDateTime = `${currentDate} ${currentTime}`;
     // State for form data
+    const { token } = useToken();
+    let id = '';
+    if (token) {
+        const decodedToken = jwtDecode(token);
+        console.log(decodedToken);
+        id = decodedToken.userID;
+    }
     const [formData, setFormData] = useState({
-        userId: 2, // Sample user ID
+        userId: id,
         startTime: '',
         endTime: '',
         description: '',
-        Approval: 'Pending',
-        dateSubmitted: formattedDateTime
+        dateSubmitted: formattedDateTime,
+        Approval: 'Pending'
     });
 
 
@@ -57,7 +66,7 @@ function AddLeaveRequestForm() {
        <div>
            <NavigationBar />
 
-       <body>
+
        <div>
            <button className="back">
                <a href={"/"} className="leave-a">Go Back</a>
@@ -86,7 +95,7 @@ function AddLeaveRequestForm() {
                </form>
 
        </div>
-       </body>
+
        </div>
    );
 }
