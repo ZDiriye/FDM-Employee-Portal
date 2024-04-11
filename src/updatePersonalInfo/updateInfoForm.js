@@ -55,6 +55,7 @@ function UpdateInfoForm() {
         <div>
             <NavigationBar />
             <form onSubmit={handleSubmit}>
+                <h1>Update Information</h1>
                 <label htmlFor="userId">User ID</label>
                 <div id="userId">{userId}</div>
 
@@ -91,7 +92,8 @@ function UpdateInfoForm() {
                     required
                 />
 
-                <input type="submit" value="Update Information" />
+                <br/>
+                <input className="green" type="submit" value="Update Information" />
             </form>
         </div>
     );
