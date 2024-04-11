@@ -34,7 +34,8 @@ const updateClient =require('./updateClient');
 const deleteClient = require('./deleteClient');
 const getClient = require('./getClient');
 const getClientInfo = require('./getClientInfo');
-const getEmployees = require('./getEmployees')
+const getEmployees = require('./getEmployees');
+const updatePersonalInfo = require('./updatePersonalInfo');
 
 
 const app = express()
@@ -79,7 +80,7 @@ app.get('/api/clients/view',getClient);
 app.delete('/api/clients/delete',deleteClient);
 app.get('/api/client/getInfo',getClientInfo);
 app.get('/getEmployees',getEmployees);
-
+app.post('/updatePersonalInfo', updatePersonalInfo);
 
 
 app.listen(3001, () => console.log('Listening at port 3001'))
