@@ -93,7 +93,7 @@ function UpdateInfoForm() {
                 />
 
                 <br/>
-                <input className="green" type="submit" value="Update Information" />
+                <input className="light" type="submit" value="Update Information" />
             </form>
         </div>
     );
