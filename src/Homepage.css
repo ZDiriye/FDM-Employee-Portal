@@ -1,0 +1,218 @@
+/* General body styling */
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f4f4f4;
+  color: #333;
+}
+
+/* Navigation bar styles */
+.navigation-bar {
+  background-color: #333;
+  color: white;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navigation-bar a {
+  color: white;
+  text-decoration: none;
+  margin-right: 20px;
+}
+
+.navigation-bar a:last-child {
+  margin-right: 0;
+}
+
+/* Responsive design adjustments for navigation bar */
+@media (max-width: 768px) {
+  .navigation-bar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .navigation-bar a {
+    margin-bottom: 10px;
+  }
+}
+
+
+
+/* Main content area */
+main {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  grid-template-rows: 28% auto auto;
+  grid-template-areas: 
+    "content payslip"
+    "directory latestPost"
+    "directory TeamPost"; 
+  gap: 20px;
+  padding: 20px;
+  height: 74.3vh; /* Combined duplicated main selectors */
+  align-items: start;
+}
+
+.general-news-feed{
+  grid-area: latestPost;
+  margin-top: 20%;
+  margin-bottom: -15%;
+}
+
+.general-content {
+  grid-area: content;
+}
+
+/* Username greeting */
+.username-heading {
+  color: #333;
+  margin-bottom: 24px;
+  font-size: 1.25em;
+}
+
+/* Posts containers */
+.post-container, .TeamPost-container {
+  background: #ffffff;
+  border: 1px solid #dddddd;
+  border-radius: 4px;
+  padding: 15px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: block;
+  text-decoration: none;
+  margin-bottom: 0%;
+  overflow: hidden;
+}
+
+.team-news-feed {
+  grid-area: TeamPost;
+  margin-top: 0%;
+}
+
+/* News feed titles */
+.team-news-feed-title, .general-news-feed-title {
+  color: #0B5D93;
+  border-bottom: 2px solid #0B5D93;
+}
+
+/* Post titles and texts */
+.post-title, .post-text {
+  overflow: hidden;
+}
+
+.post-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin: 0;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.post-date {
+  font-size: 0.9rem;
+  color: #666666;
+  margin: 5px 0;
+}
+
+.post-text {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #333333;
+  overflow: auto;
+}
+
+/* Link styling */
+.post-container a {
+  color: inherit;
+}
+
+/* Payslip section */
+.payslip-section {
+  grid-area: payslip;
+  margin-top: 0%;
+  height: auto; /* allow the content to define the height */
+  max-height: 70%; /* keep the max height if needed */}
+
+/* No posts message */
+.no-posts {
+  text-align: center;
+  color: #999;
+  margin-top: 20px;
+  font-style: italic;
+}
+
+/* Footer styles */
+footer {
+  padding: 20px;
+  text-align: center;
+  background-color: #333;
+  color: white;
+  margin-top: 40px;
+  padding: '20px';
+  text-align: center;
+  background-color: darkgray;
+  color: white;
+  max-height: 50%;
+  
+}
+
+/* Rights reserved text */
+.rights-reserved {
+  margin: 0;
+  font-size: 0.85em;
+}
+
+
+.employee-directory {
+  grid-area: directory;
+  margin-top: -10%;
+  width: 60%;
+  height: 60%;
+  /*width: 60%; /* Or whatever width you prefer */
+  /*margin: 0 auto; /* This will center the directory if there is space on the sides */
+  /*overflow-x: auto; /* Adds a scrollbar if the table is wider than the container */
+}
+
+
+
+/*admin*/
+
+main.admin {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto auto auto;
+  grid-template-areas: 
+  "dir_admin payslip_admin";
+  padding: 20px;
+  gap: 20px;
+  height: auto;
+  align-items: start;
+}
+
+/* Username greeting */
+.username-heading {
+  color: #333;
+  margin-bottom: 24px;
+  font-size: 1.25em;
+}
+
+.payslip-section.admin{
+  grid-area: payslip_admin;
+}
+
+/* Employee directory styles for admin */
+.employee-directory.admin {
+  width: 100%;
+  overflow-x: auto; /* Adds a scrollbar if the table is wider than the container */
+  grid-area: dir_admin;
+}
+
+@media (max-width: 768px) {
+  .employee-directory {
+    max-width: 100%;
+  }
+}

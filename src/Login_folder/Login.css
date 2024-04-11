@@ -1,0 +1,127 @@
+/* General container and form styling */
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #f0f2f5;
+}
+
+.login-form{
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.login-input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 250px;
+}
+
+.form-group p {
+  margin: 0;
+  font-weight: bold;
+}
+
+/* Input fields styling */
+
+
+.otp-field {
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  font-size: 20px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+}
+.otp-inputs {
+  display: flex;
+  gap: 15px;
+}
+
+/* Button styling */
+.submit-button, .verify-btn, .forgot-password-button, .resend-otp-button, .back-button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  align-self: center;
+}
+
+.verify-btn{
+  align-items: center;
+}
+
+.resend-otp-button, .back-button {
+  width: 180px;
+}
+.button-container {
+  display: flex;
+  justify-content: space-evenly; /* Adjust as necessary for your design */
+  margin-top: 20px; /* Space from the form above */
+}
+
+
+
+/* Adjust individual button widths if necessary */
+.resend-otp-button,
+.back-button {
+  flex-grow: 1; /* Makes both buttons take up equal space */
+  margin: 0 10px; /* Space between buttons */
+}
+
+
+
+
+
+.forgot-password-button, .resend-otp-button, .back-button {
+  background-color: #6c757d;
+  margin-top: 10px;
+}
+
+.submit-button:hover, .verify-btn:hover, .forgot-password-button:hover, .resend-otp-button:hover, .back-button:hover  {
+  background-color: #0056b3;
+}
+
+/* Error message styling */
+.error-message, .error {
+  color: #dc3545;
+  margin-top: 10px;
+}
+
+/* Titles */
+.login-title, h2 {
+  color: #333;
+}
+
+
+
+.simple-nav {
+  background-color: #333; /* Dark background for the nav bar */
+  color: #fff; /* White text color */
+  padding: 10px 20px; /* Some padding around the content */
+  text-align: right; /* Align the nav content to the left */
+  position: fixed; /* Fixed at the top */
+  width: 100%; /* Full width */
+  top: 0; /* At the very top of the page */
+  left: 0; /* At the left edge of the page */
+  z-index: 1000; /* Ensure it's above other content */
+}
+
+.nav-logo {
+  text-decoration: none; /* No underlines on the logo */
+  color: #fff; /* White text color */
+  font-weight: bold; /* Make it bold */
+}
+
+/* Adjust the login container to not overlap with the navigation */
+
+
+/* Rest of your existing CSS for .login-container and other classes remains the same */
+

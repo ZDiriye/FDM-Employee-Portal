@@ -1,0 +1,40 @@
+/*Things for view Client info page*/
+
+.data-container{
+    width: 30%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 3%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    border-style: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    background-color: #ffffff;
+}
+
+h2{
+    font-size: large;
+}
+
+.info{
+    text-align: center;
+    font-size: medium;
+    font-weight: normal;
+}
+
+.email-link{
+    color: #2657c0;
+    text-decoration: none;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: normal;
+    display: block;
+    margin-top: 2%;
+    width: 20%;
+}
+
+.email-link:hover{
+    color: #85278c;
+}

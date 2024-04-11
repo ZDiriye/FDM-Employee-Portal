@@ -1,0 +1,49 @@
+.payslip-section {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+  }
+  
+  .payslip-section h2 {
+    color: #0B5D93;
+    border-bottom: 2px solid #0B5D93;
+    margin-bottom: 20px;
+  }
+  
+  .payslip-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+  }
+
+  
+  .payslip-controls select {
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 100%; /* You can adjust this as per your layout */
+  }
+  
+  .payslip-controls button {
+    padding: 10px 20px;
+    background-color: #4CAF50; /* Green background */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .payslip-controls button:hover {
+    background-color: #45a049; /* Darker shade for hover state */
+  }
+  
+  .payslip-controls button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
