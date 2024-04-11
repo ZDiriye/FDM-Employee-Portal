@@ -44,10 +44,8 @@ const NavigationBar = () => {
       { name:"Leave requests", path: "/ViewLeaveRequest", icon:team_icon},
     ],
     manager: [
-      { name: "Dashboard", path: "/dashboard", icon: dashboard_icon },
-      { name: "Manage Users", path: "/manage-users", icon: manage_account_icon },
-      { name:"Leave requests", path: "/ViewLeaveRequest", icon:team_icon},
-      { name:"Team Leave Requests", path: "/ManageLeaveRequest", icon:manage_team_icon},
+      /*{ name:"Leave requests", path: "/ViewLeaveRequest", icon:team_icon},
+      { name:"Team Leave Requests", path: "/ManageLeaveRequest", icon:manage_team_icon},*/
     ],
     consultant: [
       { name: "Client Details", path: "/consultations", icon: client_info_icon},
