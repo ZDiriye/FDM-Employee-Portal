@@ -12,7 +12,6 @@ function EmployeeDirectory() {
   const [employees, setEmployees] = useState([]);
 
   useEffect(() => {
-    // Fetch employee data from your API
     axios.get('http://localhost:3001/getEmployees')
       .then(response => {
         setEmployees(response.data);
@@ -54,7 +53,7 @@ function MainContent({ username }) {
 
   const [latestPost, setLatestPost] = useState(null);
   const [latestTeamPost, setLatestTeamPost] = useState(null);
-  const [message, setMessage] = useState(''); // For handling messages like "No posts found."
+  const [message, setMessage] = useState(''); 
   const { token } = useToken();
 
   let teamId = '';

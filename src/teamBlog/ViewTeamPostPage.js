@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { jwtDecode } from 'jwt-decode';
 import useToken from '../useToken';
-import Modal from './TeamModal'; // Import the Modal component
+import Modal from './TeamModal'; 
 import "./ViewTeamPostPage.css";
 import DeletePostsPage from './DeleteTeamPost';
 import CreateTeamPostForm from './CreateTeamPostForm';
@@ -13,8 +13,8 @@ import NavigationBar from '../NavBar';
 
 function TeamPostsPage() {
     const [posts, setPosts] = useState([]);
-    const [message, setMessage] = useState(''); // For handling messages like "No posts found."
-    const { token } = useToken(); // Use the token from your custom hook
+    const [message, setMessage] = useState(''); 
+    const { token } = useToken(); 
     const [showTeamModal, setShowTeamModal] = useState(false);
     const [showDeleteTeamModal, setShowDeleteTeamModal] = useState(false);
 
@@ -26,9 +26,8 @@ function TeamPostsPage() {
 
     if (token) {
         const decodedToken = jwtDecode(token);
-        // Assume the token has a claim 'userId', change to 'username' if necessary
         teamId = decodedToken.TeamID;
-        name = decodedToken.Name; // Adjust the key based on your token structure
+        name = decodedToken.Name;
         surname = decodedToken.Surname;
         type = decodedToken.Type;
     }
@@ -55,7 +54,7 @@ function TeamPostsPage() {
     };
 
     const handleGeneralDeleteAction = () => {
-        handleOpenDeleteTeamModal(); // Open the delete posts modal
+        handleOpenDeleteTeamModal(); 
     };
 
 
@@ -65,8 +64,8 @@ function TeamPostsPage() {
 
     const fetchPosts = async () => {
         try {
-            const response = await axios.post('http://localhost:3001/teamViewPost', {teamId}); // Match this endpoint to your backend
-            // Check if response contains posts data directly
+            const response = await axios.post('http://localhost:3001/teamViewPost', {teamId}); 
+
             console.log("this is the response: ", response);
             if (response.data.length > 0) {
                 console.log(response.data);
@@ -88,7 +87,6 @@ function TeamPostsPage() {
                     setPosts([]);
                 }
                  
-                 // Ensure posts are cleared if there are no posts
             }
         } catch (error) {
             console.error("Error fetching posts:", error);

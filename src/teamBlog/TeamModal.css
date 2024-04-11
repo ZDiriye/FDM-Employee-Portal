@@ -6,9 +6,9 @@
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.5);
   display: flex;
-  align-items: center; /* This keeps the modal content vertically centered */
-  justify-content: center; /* This keeps the modal content horizontally centered */
-  z-index: 1000; /* Ensure it's above other content */
+  align-items: center; 
+  justify-content: center; 
+  z-index: 1000; 
 }
 
 .modal-content {
@@ -16,10 +16,10 @@
   padding: 20px;
   border-radius: 5px;
   position: relative;
-  width: 50%; /* You might want to adjust this depending on your design needs */
-  max-width: 500px; /* Or 'none' if you want to make it more responsive */
-  max-height: 80vh; /* This will limit the height of the modal */
-  overflow-y: auto; /* This adds scroll to the modal content if it's too long */
+  width: 50%; 
+  max-width: 500px; 
+  max-height: 80vh; 
+  overflow-y: auto; 
 }
 
 .close {
