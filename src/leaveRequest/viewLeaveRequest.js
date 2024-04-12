@@ -5,9 +5,6 @@ import NavigationBar from "../NavBar";
 import './formatting.css';
 import useToken from "../useToken";
 
-
-
-
 function ViewLeaveRequest() {
     const [leaveRequests, setLeaveRequests] = useState([]);
     const [filter, setFilter] = useState('All');
@@ -19,37 +16,39 @@ function ViewLeaveRequest() {
     });
 
     const { token } = useToken();
-    let userId = '';
-    if (token) {
+    let userId ='';
+
+    if (token){
         const decodedToken = jwtDecode(token);
-        userId = decodedToken.userId;
+        console.log(decodedToken);
+        userId = decodedToken.userID
     }
 
-    // Fetch leave requests from the server based on filter and orderBy
+    // Fetch leave requests from the server based on filter and orderBy and userId
     useEffect(() => {
         async function fetchLeaveRequests() {
             try {
-                const response = await axios.get(`http://localhost:5000/api/leaveRequest/getUserLeaveRequest?filter=${filter}&orderBy=${orderBy}&Id=${userId}`);
+                const response = await axios.get(`http://localhost:3001/api/leaveRequest/getUserLeaveRequest?filter=${filter}&orderBy=${orderBy}&userId=${userId}`);
                 setLeaveRequests(response.data);
             } catch (error) {
                 console.error('Error fetching leave requests:', error);
             }
         }
         fetchLeaveRequests();
-    }, [filter, orderBy]);
+    }, [filter, orderBy, userId]);
 
     // Fetch leave request counts once when the component mounts
     useEffect(() => {
         async function fetchLeaveRequestCounts() {
             try {
-                const response2 = await axios.get('http://localhost:5000/api/leaveRequest/countUserLeaveRequest');
+                const response2 = await axios.get(`http://localhost:3001/api/leaveRequest/countUserLeaveRequest?userId=${userId}`);
                 setLeaveRequestCounts(response2.data);
             } catch (error) {
                 console.error('Error fetching leave request counts:', error);
             }
         }
         fetchLeaveRequestCounts();
-    }, []);
+    }, [userId]);
 
 
     // Handle change in filter selection

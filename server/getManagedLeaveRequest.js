@@ -1,7 +1,10 @@
 const db = require('./dbPath');
 
 function getManagedLeaveRequest(req, res) {
-   const managerId = 2;// Sample user ID
+   const managerId = req.query.managerId;
+   const filter = req.query.filter;
+   const orderBy = req.query.orderBy;
+
    let query = `
    SELECT
        user.userId, user.firstName, user.lastName, leaveRequest.startTime, leaveRequest.endTime, leaveRequest.description, leaveRequest.Approval, leaveRequest.dateSubmitted
@@ -15,10 +18,6 @@ function getManagedLeaveRequest(req, res) {
        user ON account.userId = user.userId
    WHERE
        team.managerId = ?`; // gets the leave requests of employees managed by a specific manager
-
-
-   const filter = req.query.filter;
-   const orderBy = req.query.orderBy;
 
 
    if (filter === 'Pending') {
