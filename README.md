@@ -1,3 +1,5 @@
+**Status: Deprecated — this project is no longer maintained and may not run.**
+
 # FDM Employee Portal
 
 ## Project Overview
